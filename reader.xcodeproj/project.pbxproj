@@ -15,6 +15,20 @@
 		184E6A661F3466230059441F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 184E6A641F3466230059441F /* LaunchScreen.storyboard */; };
 		184E6A711F3466230059441F /* readerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184E6A701F3466230059441F /* readerTests.m */; };
 		184E6A7C1F3466230059441F /* readerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184E6A7B1F3466230059441F /* readerUITests.m */; };
+		18D108A61F38068100890982 /* ADDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108A51F38068100890982 /* ADDisplayView.m */; };
+		18D108A91F38120400890982 /* ADCTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108A81F38120400890982 /* ADCTFrameParserConfig.m */; };
+		18D108AC1F3812C800890982 /* ADCTFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108AB1F3812C800890982 /* ADCTFrameParser.m */; };
+		18D108AF1F38136900890982 /* ADCoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108AE1F38136900890982 /* ADCoreTextData.m */; };
+		18D108B21F38145000890982 /* UIView+ADCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108B11F38145000890982 /* UIView+ADCoreText.m */; };
+		18D108C91F38491E00890982 /* ADNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108C81F38491E00890982 /* ADNavigationController.m */; };
+		18D108D41F384B0900890982 /* ADBookshelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108CE1F384B0900890982 /* ADBookshelfViewController.m */; };
+		18D108D51F384B0900890982 /* ADContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108D01F384B0900890982 /* ADContentViewController.m */; };
+		18D108D61F384B0900890982 /* ADContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D108D11F384B0900890982 /* ADContentViewController.xib */; };
+		18D108D71F384B0900890982 /* ADPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108D31F384B0900890982 /* ADPageViewController.m */; };
+		18D108DD1F384B2400890982 /* ADSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108DC1F384B2400890982 /* ADSettingViewController.m */; };
+		18D108E31F384B6700890982 /* ADChapterContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108E21F384B6700890982 /* ADChapterContentModel.m */; };
+		18D108E71F384ED600890982 /* ADReaderSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D108E61F384ED600890982 /* ADReaderSetting.m */; };
+		A65859471A99870ACC01F3B0 /* libPods-reader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64983C1238AF153B461A817B /* libPods-reader.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +65,36 @@
 		184E6A771F3466230059441F /* readerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = readerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		184E6A7B1F3466230059441F /* readerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = readerUITests.m; sourceTree = "<group>"; };
 		184E6A7D1F3466230059441F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D108A41F38068100890982 /* ADDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDisplayView.h; sourceTree = "<group>"; };
+		18D108A51F38068100890982 /* ADDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDisplayView.m; sourceTree = "<group>"; };
+		18D108A71F38120400890982 /* ADCTFrameParserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCTFrameParserConfig.h; sourceTree = "<group>"; };
+		18D108A81F38120400890982 /* ADCTFrameParserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCTFrameParserConfig.m; sourceTree = "<group>"; };
+		18D108AA1F3812C800890982 /* ADCTFrameParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCTFrameParser.h; sourceTree = "<group>"; };
+		18D108AB1F3812C800890982 /* ADCTFrameParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCTFrameParser.m; sourceTree = "<group>"; };
+		18D108AD1F38136900890982 /* ADCoreTextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCoreTextData.h; sourceTree = "<group>"; };
+		18D108AE1F38136900890982 /* ADCoreTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCoreTextData.m; sourceTree = "<group>"; };
+		18D108B01F38144F00890982 /* UIView+ADCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ADCoreText.h"; sourceTree = "<group>"; };
+		18D108B11F38145000890982 /* UIView+ADCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ADCoreText.m"; sourceTree = "<group>"; };
+		18D108B31F38149100890982 /* ADCoreText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADCoreText.h; sourceTree = "<group>"; };
+		18D108B51F3840BF00890982 /* ReaderPrefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReaderPrefix.pch; sourceTree = "<group>"; };
+		18D108C71F38491E00890982 /* ADNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNavigationController.h; sourceTree = "<group>"; };
+		18D108C81F38491E00890982 /* ADNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNavigationController.m; sourceTree = "<group>"; };
+		18D108CD1F384B0900890982 /* ADBookshelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADBookshelfViewController.h; sourceTree = "<group>"; };
+		18D108CE1F384B0900890982 /* ADBookshelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADBookshelfViewController.m; sourceTree = "<group>"; };
+		18D108CF1F384B0900890982 /* ADContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADContentViewController.h; sourceTree = "<group>"; };
+		18D108D01F384B0900890982 /* ADContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADContentViewController.m; sourceTree = "<group>"; };
+		18D108D11F384B0900890982 /* ADContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADContentViewController.xib; sourceTree = "<group>"; };
+		18D108D21F384B0900890982 /* ADPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPageViewController.h; sourceTree = "<group>"; };
+		18D108D31F384B0900890982 /* ADPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPageViewController.m; sourceTree = "<group>"; };
+		18D108DB1F384B2400890982 /* ADSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADSettingViewController.h; sourceTree = "<group>"; };
+		18D108DC1F384B2400890982 /* ADSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADSettingViewController.m; sourceTree = "<group>"; };
+		18D108E11F384B6700890982 /* ADChapterContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADChapterContentModel.h; sourceTree = "<group>"; };
+		18D108E21F384B6700890982 /* ADChapterContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADChapterContentModel.m; sourceTree = "<group>"; };
+		18D108E51F384ED600890982 /* ADReaderSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADReaderSetting.h; sourceTree = "<group>"; };
+		18D108E61F384ED600890982 /* ADReaderSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADReaderSetting.m; sourceTree = "<group>"; };
+		64983C1238AF153B461A817B /* libPods-reader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		651E5E9C62EECDC599D59D18 /* Pods-reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reader.release.xcconfig"; path = "Pods/Target Support Files/Pods-reader/Pods-reader.release.xcconfig"; sourceTree = "<group>"; };
+		B7359962676E76363A89EFF4 /* Pods-reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-reader/Pods-reader.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A65859471A99870ACC01F3B0 /* libPods-reader.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +130,8 @@
 				184E6A6F1F3466230059441F /* readerTests */,
 				184E6A7A1F3466230059441F /* readerUITests */,
 				184E6A541F3466230059441F /* Products */,
+				611E61BC70F198F24F0A3450 /* Pods */,
+				3045495AEF51F6F10FCEC80D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +148,7 @@
 		184E6A551F3466230059441F /* reader */ = {
 			isa = PBXGroup;
 			children = (
+				18D108A11F38062800890982 /* Classes */,
 				184E6A591F3466230059441F /* AppDelegate.h */,
 				184E6A5A1F3466230059441F /* AppDelegate.m */,
 				184E6A5C1F3466230059441F /* ViewController.h */,
@@ -118,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				184E6A571F3466230059441F /* main.m */,
+				18D108B51F3840BF00890982 /* ReaderPrefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -140,6 +189,152 @@
 			path = readerUITests;
 			sourceTree = "<group>";
 		};
+		18D108A11F38062800890982 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				18D108E41F384E9400890982 /* ReaderManager */,
+				18D108C61F3848A700890982 /* Main */,
+				18D108B61F3845AD00890982 /* Bookshelf */,
+				18D108B71F3845AD00890982 /* Setting */,
+				18D108A21F38062800890982 /* CoreText */,
+				18D108A31F38062800890982 /* Other */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		18D108A21F38062800890982 /* CoreText */ = {
+			isa = PBXGroup;
+			children = (
+				18D108A41F38068100890982 /* ADDisplayView.h */,
+				18D108A51F38068100890982 /* ADDisplayView.m */,
+				18D108A71F38120400890982 /* ADCTFrameParserConfig.h */,
+				18D108A81F38120400890982 /* ADCTFrameParserConfig.m */,
+				18D108AA1F3812C800890982 /* ADCTFrameParser.h */,
+				18D108AB1F3812C800890982 /* ADCTFrameParser.m */,
+				18D108AD1F38136900890982 /* ADCoreTextData.h */,
+				18D108AE1F38136900890982 /* ADCoreTextData.m */,
+				18D108B01F38144F00890982 /* UIView+ADCoreText.h */,
+				18D108B11F38145000890982 /* UIView+ADCoreText.m */,
+				18D108B31F38149100890982 /* ADCoreText.h */,
+			);
+			path = CoreText;
+			sourceTree = "<group>";
+		};
+		18D108A31F38062800890982 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		18D108B61F3845AD00890982 /* Bookshelf */ = {
+			isa = PBXGroup;
+			children = (
+				18D108CA1F384AF300890982 /* Controller */,
+				18D108CB1F384AF300890982 /* Model */,
+				18D108CC1F384AF400890982 /* View */,
+			);
+			path = Bookshelf;
+			sourceTree = "<group>";
+		};
+		18D108B71F3845AD00890982 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				18D108D81F384B1200890982 /* Controller */,
+				18D108D91F384B1200890982 /* Model */,
+				18D108DA1F384B1200890982 /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		18D108C61F3848A700890982 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				18D108C71F38491E00890982 /* ADNavigationController.h */,
+				18D108C81F38491E00890982 /* ADNavigationController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		18D108CA1F384AF300890982 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18D108CD1F384B0900890982 /* ADBookshelfViewController.h */,
+				18D108CE1F384B0900890982 /* ADBookshelfViewController.m */,
+				18D108CF1F384B0900890982 /* ADContentViewController.h */,
+				18D108D01F384B0900890982 /* ADContentViewController.m */,
+				18D108D11F384B0900890982 /* ADContentViewController.xib */,
+				18D108D21F384B0900890982 /* ADPageViewController.h */,
+				18D108D31F384B0900890982 /* ADPageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18D108CB1F384AF300890982 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18D108E11F384B6700890982 /* ADChapterContentModel.h */,
+				18D108E21F384B6700890982 /* ADChapterContentModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D108CC1F384AF400890982 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18D108D81F384B1200890982 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18D108DB1F384B2400890982 /* ADSettingViewController.h */,
+				18D108DC1F384B2400890982 /* ADSettingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18D108D91F384B1200890982 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D108DA1F384B1200890982 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18D108E41F384E9400890982 /* ReaderManager */ = {
+			isa = PBXGroup;
+			children = (
+				18D108E51F384ED600890982 /* ADReaderSetting.h */,
+				18D108E61F384ED600890982 /* ADReaderSetting.m */,
+			);
+			path = ReaderManager;
+			sourceTree = "<group>";
+		};
+		3045495AEF51F6F10FCEC80D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64983C1238AF153B461A817B /* libPods-reader.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		611E61BC70F198F24F0A3450 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7359962676E76363A89EFF4 /* Pods-reader.debug.xcconfig */,
+				651E5E9C62EECDC599D59D18 /* Pods-reader.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +342,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 184E6A801F3466230059441F /* Build configuration list for PBXNativeTarget "reader" */;
 			buildPhases = (
+				650CEEEBBB6DF52F8B45054A /* [CP] Check Pods Manifest.lock */,
 				184E6A4F1F3466230059441F /* Sources */,
 				184E6A501F3466230059441F /* Frameworks */,
 				184E6A511F3466230059441F /* Resources */,
+				F7952EFBD5A58279D1DA4463 /* [CP] Embed Pods Frameworks */,
+				0D47DE4B976FF8854F0F334C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,11 +400,13 @@
 		184E6A4B1F3466220059441F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AD;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = beequick;
 				TargetAttributes = {
 					184E6A521F3466230059441F = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = HC39SD8T38;
 						ProvisioningStyle = Automatic;
 					};
 					184E6A6B1F3466230059441F = {
@@ -249,6 +449,7 @@
 				184E6A661F3466230059441F /* LaunchScreen.storyboard in Resources */,
 				184E6A631F3466230059441F /* Assets.xcassets in Resources */,
 				184E6A611F3466230059441F /* Main.storyboard in Resources */,
+				18D108D61F384B0900890982 /* ADContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,14 +469,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D47DE4B976FF8854F0F334C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-reader/Pods-reader-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		650CEEEBBB6DF52F8B45054A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F7952EFBD5A58279D1DA4463 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-reader/Pods-reader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		184E6A4F1F3466230059441F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D108AC1F3812C800890982 /* ADCTFrameParser.m in Sources */,
+				18D108B21F38145000890982 /* UIView+ADCoreText.m in Sources */,
+				18D108D71F384B0900890982 /* ADPageViewController.m in Sources */,
+				18D108E71F384ED600890982 /* ADReaderSetting.m in Sources */,
+				18D108DD1F384B2400890982 /* ADSettingViewController.m in Sources */,
+				18D108D41F384B0900890982 /* ADBookshelfViewController.m in Sources */,
+				18D108A91F38120400890982 /* ADCTFrameParserConfig.m in Sources */,
+				18D108E31F384B6700890982 /* ADChapterContentModel.m in Sources */,
+				18D108A61F38068100890982 /* ADDisplayView.m in Sources */,
+				18D108C91F38491E00890982 /* ADNavigationController.m in Sources */,
 				184E6A5E1F3466230059441F /* ViewController.m in Sources */,
 				184E6A5B1F3466230059441F /* AppDelegate.m in Sources */,
+				18D108AF1F38136900890982 /* ADCoreTextData.m in Sources */,
 				184E6A581F3466230059441F /* main.m in Sources */,
+				18D108D51F384B0900890982 /* ADContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,8 +685,12 @@
 		};
 		184E6A811F3466230059441F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7359962676E76363A89EFF4 /* Pods-reader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HC39SD8T38;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/reader/ReaderPrefix.pch";
 				INFOPLIST_FILE = reader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = beequick.reader;
@@ -435,8 +700,12 @@
 		};
 		184E6A821F3466230059441F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 651E5E9C62EECDC599D59D18 /* Pods-reader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HC39SD8T38;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/reader/ReaderPrefix.pch";
 				INFOPLIST_FILE = reader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = beequick.reader;
@@ -509,6 +778,7 @@
 				184E6A821F3466230059441F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		184E6A831F3466230059441F /* Build configuration list for PBXNativeTarget "readerTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +787,7 @@
 				184E6A851F3466230059441F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		184E6A861F3466230059441F /* Build configuration list for PBXNativeTarget "readerUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +796,7 @@
 				184E6A881F3466230059441F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
