@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ADChapterContentModel.h"
 
 @interface ADContentViewController : UIViewController
 
 @property (nonatomic, assign) NSUInteger index;
-@property (nonatomic, copy) NSString *content;
-
+@property (nonatomic, strong) ADChapterContentModel *model;
+- (void)reloadData;
 @end

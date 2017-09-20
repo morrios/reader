@@ -8,6 +8,7 @@
 
 #import "ADNavigationController.h"
 
+
 @interface ADNavigationController ()
 
 @end
@@ -23,6 +24,7 @@
     viewController.hidesBottomBarWhenPushed = YES;
     [super pushViewController:viewController animated:animated];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

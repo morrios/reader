@@ -7,11 +7,18 @@
 //
 
 #import "ADContentViewController.h"
-#import "ADCoreText.h"
+#import "ADDisplayView.h"
+#import "ADBookMenu.h"
+#import "ADSherfCache.h"
+#import "YYModel.h"
+
 
 @interface ADContentViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLable;
+@property (weak, nonatomic) IBOutlet UILabel *pageNumLable;
+
 @property (nonatomic, strong) ADDisplayView *disPlayView;
+
 @end
 
 @implementation ADContentViewController
@@ -20,36 +27,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.contentLable.text = [NSString stringWithFormat:@"%d", self.index];
-//    [self.view addSubview:self.disPlayView];
+//    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    _disPlayView = [[ADDisplayView alloc] initWithFrame:CGRectMake(kYReaderLeftSpace, kYReaderTopSpace, kScreenWidth - kYReaderLeftSpace - kYReaderRightSpace, kScreenHeight - kYReaderTopSpace - kYReaderBottomSpace)];
+    _disPlayView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_disPlayView];
     
-    
-    //创建画布
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    ADDisplayView *dispaleView = [[ADDisplayView alloc] initWithFrame:CGRectMake(kYReaderLeftSpace, kYReaderTopSpace, screenSize.width-kYReaderRightSpace-kYReaderLeftSpace, screenSize.height-kYReaderTopSpace-kYReaderBottomSpace)];
-    [self.view addSubview:dispaleView];
-    
-    //设置配置信息
-    ADCTFrameParserConfig *config = [[ADCTFrameParserConfig alloc] init];
-    config.textColor = [UIColor blackColor];
-    config.width = dispaleView.width;
-    config.lineSpace = 5;
-    config.fontSize  = 16;
-    
-    
-    //设置内容
-    if (self.content != nil) {
-        ADCoreTextData *data = [ADCTFrameParser parseContent:self.content config:config];
-        dispaleView.data = data;
-        dispaleView.height = data.height;
-        dispaleView.backgroundColor = [UIColor clearColor];
-    }
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self reloadData];
     
 }
 
 
-
+- (void)reloadData{
+    NSString * str = [NSString stringWithFormat:@"第%ld/%ld页", (long)(_index + 1), (long)_model.pageArray.count];
+    self.pageNumLable.text = str;
+    
+    self.contentLable.text = [NSString stringWithFormat:@"%@", _model.title];
+    _disPlayView.content = [_model getStringWith:_index];
+    NSLog(@"reload data%ld",self.index);
+    
+    [ADSherfCache UpdateHistoryWithBookId:self.model.bookId chapter:self.model.chapterNum pageIndex:_index];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

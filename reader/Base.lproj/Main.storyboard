@@ -13,7 +13,7 @@
         <scene sceneID="fLb-Yj-xpE">
             <objects>
                 <navigationController id="ktX-Dz-UA2" customClass="ADNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="FkC-Yn-eam"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="ADTabbarSherf" id="FkC-Yn-eam"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uly-te-TlM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -63,11 +63,11 @@
             </objects>
             <point key="canvasLocation" x="-1303" y="-40"/>
         </scene>
-        <!--Item-->
+        <!--找书-->
         <scene sceneID="L84-Yn-MCI">
             <objects>
                 <navigationController id="pMg-yh-mSV" customClass="ADNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="w26-9V-tLf"/>
+                    <tabBarItem key="tabBarItem" title="找书" image="ADTabbarSearch" id="w26-9V-tLf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PRd-AS-8Nb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -100,4 +100,8 @@
             <point key="canvasLocation" x="537" y="248"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ADTabbarSearch" width="16" height="16"/>
+        <image name="ADTabbarSherf" width="30" height="30"/>
+    </resources>
 </document>

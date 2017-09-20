@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ADBaseViewController.h"
 
-@interface ADBookshelfViewController : UIViewController
+@interface ADBookshelfViewController : ADBaseViewController
 
 @end

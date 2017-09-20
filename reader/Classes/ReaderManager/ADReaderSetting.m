@@ -23,10 +23,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _lineSpace = 5;
+        _lineSpace = 10;
         _fontSize = 16.0;
         _font = [UIFont systemFontOfSize:_fontSize];
-        
     }
     return self;
 }

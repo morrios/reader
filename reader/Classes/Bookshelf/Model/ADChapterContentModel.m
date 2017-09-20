@@ -12,8 +12,16 @@
 
 @implementation ADChapterContentModel
 
-- (void)setContent:(NSString *)content{
-    _content = content;
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        _index = 0;
+        _chapterNum = 0;
+    }
+    return self;
+}
+- (void)setBody:(NSString *)body{
+    _body = body;
     [self updateContentPaging];
 }
 
@@ -24,11 +32,10 @@
     NSMutableArray *rangArr = @[].mutableCopy;
     ADReaderSetting *setting = [ADReaderSetting shareInstance];
     CGPathRef path = CGPathCreateWithRect(rect, NULL);
-    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:self.content attributes:setting.readerAttributes];
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:self.body attributes:setting.readerAttributes];
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)att);
     CFRange range = CFRangeMake(0, 0);
     NSUInteger rangeOffset = 0;
-    
     do {
         CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(rangeOffset, 0), path, NULL);
         range = CTFrameGetVisibleStringRange(frame);
@@ -38,7 +45,8 @@
             CFRelease(frame);
         }
     } while (range.length+range.location<att.length);
-    NSLog(@"%@", rangArr);
+    
+    
     if (path) {
         CFRelease(path);
     }
@@ -47,12 +55,13 @@
         CFRelease(framesetter);
     }
     _pageArray = rangArr;
+    _pageCount = rangArr.count;
 }
 
 - (NSString *)getStringWith:(NSUInteger)page{
     NSRange range = [self getRangeWithPage:page];
     if (range.length > 0) {
-        return [_content substringWithRange:range];
+        return [_body substringWithRange:range];
     }
     return nil;
 }
@@ -64,6 +73,11 @@
     return NSMakeRange(NSNotFound, 0);
 }
 
-
+- (NSString *)content{
+    if (!_body) {
+        return @"暂无数据";
+    }
+    return [self getStringWith:_index];
+}
 
 @end

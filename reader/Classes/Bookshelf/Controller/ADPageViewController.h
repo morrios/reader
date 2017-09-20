@@ -10,4 +10,8 @@
 
 @interface ADPageViewController : UIViewController
 
+@property (nonatomic, copy) NSString *bookId;
+@property (nonatomic, copy) NSString *bookName;
+
+
 @end

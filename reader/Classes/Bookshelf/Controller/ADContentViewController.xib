@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ADContentViewController">
             <connections>
                 <outlet property="contentLable" destination="5nQ-Ks-848" id="7WM-sB-KSo"/>
+                <outlet property="pageNumLable" destination="5vW-gz-SDj" id="bzt-a5-Sif"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,15 +21,29 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nQ-Ks-848">
-                    <rect key="frame" x="166" y="266" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一章 全军出击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nQ-Ks-848">
+                    <rect key="frame" x="20" y="0.0" width="90" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="F7j-Gn-5wH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第1/12页" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vW-gz-SDj">
+                    <rect key="frame" x="307.5" y="642.5" width="47.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5nQ-Ks-848" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CS2-Dm-WjG"/>
+                <constraint firstAttribute="trailing" secondItem="5vW-gz-SDj" secondAttribute="trailing" constant="20" id="k67-Ud-afQ"/>
+                <constraint firstItem="5nQ-Ks-848" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="nTu-jm-AjP"/>
+                <constraint firstAttribute="bottom" secondItem="5vW-gz-SDj" secondAttribute="bottom" constant="10" id="zwT-jl-mHm"/>
+            </constraints>
         </view>
     </objects>
 </document>

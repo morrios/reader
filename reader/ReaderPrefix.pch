@@ -12,12 +12,29 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <UIKit/UIKit.h>
+#import "YYCategories.h"
+#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
+#import "ADSqlTool.h"
+
+#define ImageBaseUrl @"http://statics.zhuishushenqi.com"
+#define ChapterBaseUrl @"http://chapterup.zhuishushenqi.com/chapter/"
 #define kYReaderLeftSpace 20.0
 #define kYReaderRightSpace 20.0
 #define kYReaderTopSpace 40.0
 #define kYReaderBottomSpace 40.0
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define WeakSelf __weak typeof(self) weakSelf = self;
+#define StrongSelf typeof(weakSelf) __strong strongSelf = weakSelf;
+
+/*
+ XCode LLVM XXX - Preprocessing中Debug会添加 DEBUG=1 标志
+ */
+#ifdef DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"%s: [行号:%d]  %s\n",__FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(FORMAT, ...) nil
+#endif
 
 
 
