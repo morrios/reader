@@ -12,7 +12,9 @@
 @interface ADCacheManger : NSObject
 
 + (instancetype)share;
-- (void)saveChapter:(ADChapterContentModel *)model;
-- (NSString *)getChapter:(ADChapterContentModel *)model;
+- (void)loadAllChapters:(NSArray *)chapters;
+- (void)loadAllChaptersFrom:(NSInteger)fromC chatpers:(NSArray *)chapters;
+- (void)loadChatpersFrom:(NSInteger)fromC After:(NSInteger)count chatpers:(NSArray *)chapters;
 
+- (void)loadchapters:(NSArray *)chapters;
 @end

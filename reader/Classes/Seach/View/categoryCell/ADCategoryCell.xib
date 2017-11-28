@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ADCategoryCell">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="66"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="180" height="66"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="玄幻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEU-gs-j2h">
+                        <rect key="frame" x="0.0" y="8" width="180" height="31"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="480367本" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usU-5g-shd">
+                        <rect key="frame" x="62" y="39" width="57.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="yEU-gs-j2h" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="3HZ-BG-obR"/>
+                <constraint firstAttribute="bottom" secondItem="yEU-gs-j2h" secondAttribute="bottom" multiplier="1.7" id="Nvv-EZ-rfE"/>
+                <constraint firstItem="yEU-gs-j2h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PUI-Cv-jaH"/>
+                <constraint firstAttribute="trailing" secondItem="yEU-gs-j2h" secondAttribute="trailing" id="Tdn-2K-B0X"/>
+                <constraint firstItem="usU-5g-shd" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="bAw-04-ceo"/>
+                <constraint firstItem="usU-5g-shd" firstAttribute="top" secondItem="yEU-gs-j2h" secondAttribute="bottom" id="oHV-lj-EWf"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="booksL" destination="usU-5g-shd" id="LSk-ld-43w"/>
+                <outlet property="majorL" destination="yEU-gs-j2h" id="vN2-fJ-ddv"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

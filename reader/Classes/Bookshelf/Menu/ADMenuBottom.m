@@ -16,6 +16,7 @@ static NSInteger const baseTag = 309;
     return [[[NSBundle mainBundle] loadNibNamed:@"ADMenuBottom" owner:nil options:nil]lastObject];
 }
 
+
 - (void)awakeFromNib{
     [super awakeFromNib];
     CGFloat width = 15.0;

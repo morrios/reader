@@ -17,7 +17,7 @@
 #import "ADPageMenu.h"
 #import "ADMenuLeftView.h"
 #import "UIView+AD.h"
-
+#import "ADDownloadSheet.h"
 typedef void(^getChapter)(ADChapterContentModel *model);
 static CGFloat backViewAlpha = 0.8;
 @interface ADPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,ADPageMenuDelegate,ADMenuBottomDelegate>
@@ -36,6 +36,7 @@ static CGFloat backViewAlpha = 0.8;
 
 @property (nonatomic, strong) ADContentViewController *currentPageController;
 @property (nonatomic, strong) ADContentViewController *reducePageController;
+@property (nonatomic, strong) id responseObject;
 @end
 
 @implementation ADPageViewController
@@ -44,6 +45,11 @@ static CGFloat backViewAlpha = 0.8;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     NSLog(@"viewWillAppear");
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+    
 }
 
 
@@ -62,6 +68,7 @@ static CGFloat backViewAlpha = 0.8;
     [self loadAllChapters];
     [self.readViewController.view addSubview:self.tapMenuView];
     [self.readViewController.view addSubview:self.backView];
+    
 }
 
 
@@ -112,12 +119,15 @@ TapActionTypeMore
             [self showChapterList];
             break;
         case TapActionTypeFont:
+            [[ADPageMenu share] showFontMenu];
             NSLog(@"TapActionTypeFont");
             break;
         case TapActionTypeDark:
+            [[ADPageMenu share] showLightView];
             NSLog(@"TapActionTypeDark");
             break;
         case TapActionTypeDownLoad:
+            [[ADDownloadSheet share] showWithParesentVC:self jsonRespose:self.responseObject fromIndex:self.chapterIndex];
             NSLog(@"TapActionTypeDownLoad");
             break;
         case TapActionTypeMore:
@@ -128,6 +138,8 @@ TapActionTypeMore
             break;
     }
 }
+
+
 - (void)MenuBottomValueChange:(NSUInteger)value{
     _chapterIndex = value-1;
     _index = 0;
@@ -174,7 +186,6 @@ TapActionTypeMore
 - (void)loadAllChapters{
     [SVProgressHUD showWithStatus:@"努力加载中..."];
     WeakSelf
-    
     [ADReaderNetWorking book_getAllChapters:self.bookId complete:^(id responseObject, NSError *error) {
         if (error) {
             [SVProgressHUD showErrorWithStatus:@"加载失败"];
@@ -183,11 +194,13 @@ TapActionTypeMore
         [SVProgressHUD dismiss];
         
         StrongSelf
+        strongSelf.responseObject = responseObject;
         NSArray * chapters = [NSArray yy_modelArrayWithClass:[ADChapterModel class] json:responseObject[@"mixToc"][@"chapters"]];
         strongSelf.chapters = [chapters copy];
         strongSelf.leftView.chapters = [chapters copy];
         strongSelf.leftView.chapterIndex = strongSelf.chapterIndex;
         [strongSelf loadContentPageVc:strongSelf.currentPageController AtChapter:strongSelf.chapterIndex AtPageIndex:_index];
+//        [[ADCacheManger share] loadFrom:0 After:10 Chapters:responseObject];
         
     }];
     
@@ -201,7 +214,7 @@ TapActionTypeMore
     ADChapterModel *chapter = self.chapters[chapterIndex];
     NSString *title =chapter.title;
     [ADPageMenu share].MenuBottom.userInteractionEnabled = NO;
-    [ADReaderNetWorking book_getBookContentLink:chapter.link complete:^(id responseObject, NSError *error) {
+    [ADReaderNetWorking book_getBookContentLink:chapter.link bookId:self.bookId complete:^(id responseObject, NSError *error) {
         [ADPageMenu share].MenuBottom.userInteractionEnabled = YES;
         if (error) {
             [SVProgressHUD showErrorWithStatus:@"加载失败"];
@@ -260,12 +273,24 @@ TapActionTypeMore
 #pragma mark - delegate && datasource
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
     if (_index == 0) {//第一页
-        return nil;
+        if (self.chapterIndex==0) {
+            return nil;
+        }
+        _chapterIndex--;
+        ADContentViewController *page = [self viewControllerAtIndex:_index];
+        [self loadChapter:(_chapterIndex) complete:^(ADChapterContentModel *model) {
+            page.index = model.pageCount-1;
+            page.model = model;
+            _index = model.pageCount-1;
+            [page reloadData];
+        }];
+        return page;
     }
     _index --;
     ADContentViewController *page = [self viewControllerAtIndex:_index];
     self.currentPageController = page;
     return page;
+    
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
@@ -283,8 +308,8 @@ TapActionTypeMore
     }else{
         _index = 0;
         _chapterIndex++;
+        page.index = 0;
         [self loadChapter:(_chapterIndex) complete:^(ADChapterContentModel *model) {
-            page.index = 0;
             page.model = model;
             [page reloadData];
 
@@ -304,18 +329,18 @@ TapActionTypeMore
 - (UIPageViewController *)readViewController{
     if (!_readViewController) {
         //    初始化pageController
-        /**
-         *  @author LQQ, 15-12-26 18:12:44
-         *
-         *  UIPageViewControllerSpineLocationMin 单页显示
+        /*
+         UIPageViewControllerSpineLocationMin 单页显示
          
          UIPageViewControllerSpineLocationMid 双页显示
          */
-        _readViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionSpineLocationKey:@0,UIPageViewControllerOptionInterPageSpacingKey:@10}];
+        _readViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionSpineLocationKey:@0,UIPageViewControllerOptionInterPageSpacingKey:@0}];
         _readViewController.dataSource = self;
         _readViewController.delegate = self;
         
         ADContentViewController *page_fir = [self viewControllerAtIndex:0];
+//        _readViewController.doubleSided = YES;
+        
         _index = 0;
         self.currentPageController = page_fir;
         NSArray *array = [NSArray arrayWithObjects:page_fir, nil];
@@ -323,7 +348,7 @@ TapActionTypeMore
             NSLog(@"s");
         }];
         _readViewController.view.frame = self.view.bounds;
-        
+        NSLog(@"gestureRecognizers = %@", _readViewController.gestureRecognizers);
     }
     return _readViewController;
 }

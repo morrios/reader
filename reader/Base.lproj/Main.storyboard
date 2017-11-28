@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RLg-jA-rgO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RLg-jA-rgO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +15,7 @@
                 <navigationController id="ktX-Dz-UA2" customClass="ADNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" image="ADTabbarSherf" id="FkC-Yn-eam"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uly-te-TlM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -69,35 +69,35 @@
                 <navigationController id="pMg-yh-mSV" customClass="ADNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="找书" image="ADTabbarSearch" id="w26-9V-tLf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PRd-AS-8Nb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="OCr-PJ-frP" kind="relationship" relationship="rootViewController" id="cjs-p1-j5o"/>
+                        <segue destination="Zps-zh-zxf" kind="relationship" relationship="rootViewController" id="iZO-xk-bLx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQu-7b-6tO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-290" y="248"/>
         </scene>
-        <!--Setting View Controller-->
-        <scene sceneID="5bh-XV-da6">
+        <!--Find View Controller-->
+        <scene sceneID="lgn-V1-JXc">
             <objects>
-                <viewController id="OCr-PJ-frP" customClass="ADSettingViewController" sceneMemberID="viewController">
+                <viewController id="Zps-zh-zxf" customClass="ADFindViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ku5-xa-h37"/>
-                        <viewControllerLayoutGuide type="bottom" id="Fmf-NF-hMV"/>
+                        <viewControllerLayoutGuide type="top" id="T7C-N9-XIg"/>
+                        <viewControllerLayoutGuide type="bottom" id="mnQ-9e-uzp"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GYW-9y-itE">
+                    <view key="view" contentMode="scaleToFill" id="puZ-cY-ZwF" customClass="ADFi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1VG-9I-9bR"/>
+                    <navigationItem key="navigationItem" id="N7p-TF-ouQ"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zFh-FG-wrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bon-YB-PCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="537" y="248"/>
+            <point key="canvasLocation" x="438" y="248"/>
         </scene>
     </scenes>
     <resources>

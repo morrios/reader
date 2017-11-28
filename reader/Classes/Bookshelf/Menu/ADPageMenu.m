@@ -8,14 +8,15 @@
 
 #import "ADPageMenu.h"
 #import "Masonry.h"
+#import "UIView+AD.h"
 
-static CGFloat const topviewTop = 64;
-static CGFloat const bottomviewBottom = 100;
 static CGFloat const animateDuration = 0.3;
+
 @interface ADPageMenu ()
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewTopConstraints;
 @property (weak, nonatomic) IBOutlet UIView *backView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeightContraints;
 
 @property (nonatomic, copy) showComplete showBlock;
 @property (nonatomic, copy) dismissComplete dismissBlock;
@@ -23,6 +24,15 @@ static CGFloat const animateDuration = 0.3;
 @end
 
 @implementation ADPageMenu
+static inline CGFloat bottomviewHeight(){
+    return (100+(ADTabBarHeight_Add));
+}
+static inline CGFloat fontMenuHeight(){
+    return (242+(ADTabBarHeight_Add));
+}
+static inline CGFloat lightViewHeight(){
+    return ADTabBarHeight;
+}
 + (ADPageMenu *)share{
     static ADPageMenu *menu = nil;
     static dispatch_once_t onceToken;
@@ -40,47 +50,55 @@ static CGFloat const animateDuration = 0.3;
     self.backgroundColor = [UIColor clearColor];
     UITapGestureRecognizer *banckViewGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     [self.backView addGestureRecognizer:banckViewGesture];
-    [self initialHeight];
     self.backgroundColor = [UIColor clearColor];
-    CGFloat bottomHeight = 100.0;
+    NSLog(@"%f",bottomviewHeight());
+    self.topViewHeightContraints.constant = (ADNavBarHeight);
     [self.MenuBottom mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.left.equalTo(self);
-        make.height.mas_equalTo(bottomHeight);
-        make.bottom.equalTo(self).offset(bottomviewBottom);
+        make.height.mas_equalTo(bottomviewHeight());
+        make.bottom.equalTo(self).offset(bottomviewHeight());
     }];
+    [self initialHeight];
     [self layoutIfNeeded];
 
 }
+- (void)layoutSubviews{
+    [super layoutSubviews];
+//    self.topViewHeightContraints.constant = ADNavBarHeight;
+}
 - (void)initialHeight{
-    self.topViewTopConstraints.constant = -topviewTop;
+    self.topViewTopConstraints.constant = -(ADNavBarHeight);
     [_MenuBottom mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).offset(bottomviewBottom);
+        make.bottom.equalTo(self).offset(bottomviewHeight());
     }];
 }
 #pragma mark - show
 - (void)dismiss{
-//    self.dismissBlock();
-//    [UIView animateWithDuration:animateDuration animations:^{
-//        [self initialHeight];
-//        [self layoutIfNeeded];
-//    } completion:^(BOOL finished) {
-//        [self removeFromSuperview];
-//        
-//    }];
     [self dismissWithAnimate:YES];
 }
 - (void)dismissWithAnimate:(BOOL)animate{
     self.dismissBlock();
+    if (_fontMenu) {
+        [_fontMenu mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self).offset(fontMenuHeight());
+        }];
+    }
+    if (_lightView) {
+        [_lightView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self).offset(lightViewHeight());
+        }];
+    }
     [UIView animateWithDuration:animate?animateDuration:0 animations:^{
         [self initialHeight];
         [self layoutIfNeeded];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
-        
+        [self dismissSecondView];
     }];
 }
 
 - (void)show{
+    [self dismissSecondView];
     [UIView animateWithDuration:animateDuration animations:^{
         self.topViewTopConstraints.constant = 0;
         [_MenuBottom mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -91,11 +109,23 @@ static CGFloat const animateDuration = 0.3;
         self.showBlock();
     }];
 }
-
+- (void)dismissSecondView{
+    if (_fontMenu) {
+        [_fontMenu removeFromSuperview];
+        _fontMenu = nil;
+    }
+    if (_lightView) {
+        [_lightView removeFromSuperview];
+        _lightView = nil;
+    }
+}
 + (void)showMenuWithView:(UIView *)myView{
     
     [myView addSubview:[self share]];
-    [self share].frame = myView.bounds;
+    [[self share] mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(myView);
+    }];
+//    [self share].frame = myView.bounds;
     [[self share] show];
 }
 
@@ -110,6 +140,28 @@ static CGFloat const animateDuration = 0.3;
         [self.delegate goBack];
     }
 }
+
+#pragma mark - secondMenu
+- (void)showFontMenu{
+    [_MenuBottom mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(bottomviewHeight());
+    }];
+    [self.fontMenu mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(0);
+    }];
+    [self layoutIfNeeded];
+}
+- (void)showLightView{
+    [_MenuBottom mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(bottomviewHeight());
+    }];
+    [self.lightView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(0);
+    }];
+    [self layoutIfNeeded];
+}
+
+
 #pragma mark - setter && getter
 - (UIView *)MenuBottom{
     if (!_MenuBottom) {
@@ -118,6 +170,30 @@ static CGFloat const animateDuration = 0.3;
         
     }
     return _MenuBottom;
+}
+- (ADMenuFontView *)fontMenu{
+    if (!_fontMenu) {
+        _fontMenu = [ADMenuFontView fontView];
+        [self addSubview:_fontMenu];
+        [_fontMenu mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.left.equalTo(self);
+            make.height.mas_equalTo(fontMenuHeight());
+            make.bottom.equalTo(self).offset(fontMenuHeight());
+        }];
+    }
+    return _fontMenu;
+}
+- (ADMenuLightView *)lightView{
+    if (!_lightView) {
+        _lightView = [ADMenuLightView lightView];
+        [self addSubview:_lightView];
+        [_lightView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.left.equalTo(self);
+            make.height.mas_equalTo(lightViewHeight());
+            make.bottom.equalTo(self).offset(lightViewHeight());
+        }];
+    }
+    return _lightView;
 }
 
 @end

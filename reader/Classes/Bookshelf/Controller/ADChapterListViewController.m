@@ -29,7 +29,6 @@ static NSString *const idcell = @"idcell";
     [self configUI];
 }
 - (UIStatusBarStyle)preferredStatusBarStyle{
-    
     return UIStatusBarStyleLightContent;
 }
 - (BOOL)prefersStatusBarHidden{

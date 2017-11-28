@@ -19,5 +19,5 @@
 @property (weak, nonatomic) IBOutlet UIView *detaiView;
 
 @property (nonatomic, strong) ADListBookModel *book;
-
+- (void)setCellMainColor:(UIColor *)color;
 @end

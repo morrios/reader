@@ -34,11 +34,19 @@
     self.readerNumL.font = desfont;
     
 }
-
+- (void)setCellMainColor:(UIColor *)color{
+    self.backgroundColor = color;
+    self.detaiView.backgroundColor = color;
+}
 - (void)setBook:(ADListBookModel *)book{
     _book = book;
     self.bookNameL.text = book.title;
-    self.authorL.text = [NSString stringWithFormat:@"%@ | %@",book.author, book.cat];
+    if (book.cat) {
+        self.authorL.text = [NSString stringWithFormat:@"%@ | %@",book.author, book.cat];
+    }else{
+        self.authorL.text = book.author;
+    }
+    
     self.describeL.text = book.shortIntro;
     NSString *readStr = [NSString stringWithFormat:@"%ld 人在追",book.latelyFollower];
     if (book.retentionRatio > 0) {
@@ -46,7 +54,6 @@
     }
     self.readerNumL.text = readStr;
     NSString *url = [NSString stringWithFormat:@"%@%@",ImageBaseUrl,book.cover];
-    NSLog(@"%@",url);
     [self.bookCoverView sd_setImageWithURL:[NSURL URLWithString:book.cover] placeholderImage:[UIImage imageNamed:@"default_book_cover"]];
 }
 

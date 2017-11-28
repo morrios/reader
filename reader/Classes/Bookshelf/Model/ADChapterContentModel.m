@@ -9,6 +9,7 @@
 #import "ADChapterContentModel.h"
 #import "ADReaderSetting.h"
 #import <CoreText/CoreText.h>
+#import "NSString+AD.h"
 
 @implementation ADChapterContentModel
 
@@ -31,8 +32,9 @@
 - (void)pagingWithBounds:(CGRect)rect{
     NSMutableArray *rangArr = @[].mutableCopy;
     ADReaderSetting *setting = [ADReaderSetting shareInstance];
+    NSString *content = [self.body copy];
     CGPathRef path = CGPathCreateWithRect(rect, NULL);
-    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:self.body attributes:setting.readerAttributes];
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:content attributes:setting.readerAttributes];
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)att);
     CFRange range = CFRangeMake(0, 0);
     NSUInteger rangeOffset = 0;

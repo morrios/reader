@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^TextFiledValueChangeBlock)(id responseObject,NSError *errpr);
-
+typedef void (^TextFiledValueChangeBlock)(id value);
 @protocol ADSeachTextFiledDelegate <NSObject>
 
-- (void)TextFiled:(UITextField *)textfiled Value:(id)value responseObject:(id)object;
+- (void)ADSeachTextFiled:(UITextField *)textfiled Value:(id)value;
 
 @end
 

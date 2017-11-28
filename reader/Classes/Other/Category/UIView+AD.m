@@ -28,4 +28,17 @@
     transform.ty = ty;
     self.transform = transform;
 }
+
+- (UIViewController *)presentViewController{
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]&&![nextResponder isKindOfClass:[UINavigationController class]]) {
+            UIViewController *vc = (UIViewController *)nextResponder;
+            return vc;
+        }
+        
+    }
+    return nil;
+}
+
 @end

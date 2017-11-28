@@ -36,4 +36,7 @@ static const char * PropertysKey = "all_property_key";
     NSLog(@"%@",[self properties]);
 }
 
+
+
+
 @end

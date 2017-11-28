@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.layer.cornerRadius = 12.5;
+    self.layer.cornerRadius = 4;
     self.layer.masksToBounds = YES;
     // Initialization code
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -47,8 +47,8 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Aca-OA-aoW" secondAttribute="trailing" id="DTU-H2-qPv"/>
+                <constraint firstItem="Aca-OA-aoW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TMe-7I-Y2H"/>
                 <constraint firstItem="Aca-OA-aoW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bql-i9-yRr"/>
-                <constraint firstItem="Aca-OA-aoW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hUd-ol-7KF"/>
                 <constraint firstAttribute="trailing" secondItem="q3R-Pp-XeY" secondAttribute="trailing" id="kRJ-Sc-OeS"/>
                 <constraint firstAttribute="bottom" secondItem="q3R-Pp-XeY" secondAttribute="bottom" id="oO0-FA-YQy"/>
                 <constraint firstItem="q3R-Pp-XeY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="q5j-ZN-3qX"/>
@@ -57,7 +57,8 @@
             <connections>
                 <outlet property="backView" destination="q3R-Pp-XeY" id="dWg-Lq-B3w"/>
                 <outlet property="topView" destination="Aca-OA-aoW" id="xzv-mh-3SG"/>
-                <outlet property="topViewTopConstraints" destination="hUd-ol-7KF" id="pLM-WN-htR"/>
+                <outlet property="topViewHeightContraints" destination="JRN-Ev-0d3" id="fID-lr-fvv"/>
+                <outlet property="topViewTopConstraints" destination="TMe-7I-Y2H" id="IY9-dr-aQf"/>
             </connections>
             <point key="canvasLocation" x="24.5" y="52.5"/>
         </view>

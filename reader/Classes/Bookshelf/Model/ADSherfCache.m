@@ -8,8 +8,7 @@
 
 #import "ADSherfCache.h"
 #import "YYModel.h"
-
-static NSString *const bookCacheName = @"books";
+#import "ADCache.h"
 static NSString *const bookCacheKey = @"info";
 
 @interface ADSherfCache ()
@@ -25,10 +24,6 @@ static NSString *const bookCacheKey = @"info";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         cache = [[ADSherfCache alloc] init];
-        NSString *cacheFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
-        NSString *path = [cacheFolder stringByAppendingPathComponent:bookCacheName];
-        NSLog(@"path = %@", path);
-        bookCache = [YYCache cacheWithName:bookCacheName];
         
     });
     return cache;
@@ -46,7 +41,7 @@ static NSString *const bookCacheKey = @"info";
     [[ADSherfCache share] removeBook:bookinfo];
 }
 + (ADSherfCusModel *)ADObjectForId:(NSString *)bookid{
-    return (ADSherfCusModel *)[bookCache objectForKey:bookid];
+    return (ADSherfCusModel *)[[ADCache share].cache objectForKey:bookid];
 }
 + (NSMutableArray *)query{
     return [[ADSherfCache share] query];
@@ -62,10 +57,10 @@ static NSString *const bookCacheKey = @"info";
 
 - (void)UpdateHistoryWithBookId:(NSString *)bookID chapter:(NSInteger)chapter pageIndex:(NSInteger)pageIndex{
     if ([self queryWithBookId:bookID]) {
-        ADSherfCusModel *model = (ADSherfCusModel *)[bookCache objectForKey:bookID];
+        ADSherfCusModel *model = (ADSherfCusModel *)[[ADCache share].cache objectForKey:bookID];
         model.chapter = chapter;
         model.pageIndex = pageIndex;
-        [bookCache setObject:model forKey:bookID];
+        [[ADCache share].cache setObject:model forKey:bookID];
     }
 }
 //搜索保存历史
@@ -73,20 +68,20 @@ static NSString *const bookCacheKey = @"info";
     return [[ADSherfCache share] QueryHistoryWithBookId:bookID];
 }
 - (ADSherfCusModel *)QueryHistoryWithBookId:(NSString *)bookID{
-    return (ADSherfCusModel *)[bookCache objectForKey:bookID];
+    return (ADSherfCusModel *)[[ADCache share].cache objectForKey:bookID];
 }
 
 
 - (void)updateWithBookInfo:(ADSherfCusModel *)bookinfo{
     if ([self queryWithBookId:bookinfo._id]) {
-        [bookCache setObject:bookinfo forKey:bookinfo._id];
+        [[ADCache share].cache setObject:bookinfo forKey:bookinfo._id];
     }
 }
 
 - (NSMutableArray *)query{
     __block NSMutableArray *datas = [NSMutableArray array];
     [self.books enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        id newobj = [bookCache objectForKey:obj];
+        id newobj = [[ADCache share].cache objectForKey:obj];
         if (newobj) {
             [datas addObject:newobj];
         }
@@ -102,8 +97,8 @@ static NSString *const bookCacheKey = @"info";
         model.chapter = 0;
         model.pageIndex = 0;
         [self.books addObject:model._id];
-        [bookCache setObject:self.books forKey:bookCacheKey];
-        [bookCache setObject:model forKey:model._id];
+        [[ADCache share].cache setObject:self.books forKey:bookCacheKey];
+        [[ADCache share].cache setObject:model forKey:model._id];
         
     }
 }
@@ -124,14 +119,14 @@ static NSString *const bookCacheKey = @"info";
 - (void)removeBook:(ADBookInfo *)bookinfo{
     if ([self queryWithBookId:bookinfo._id]) {
         [self.books removeObject:bookinfo._id];
-        [bookCache removeObjectForKey:bookinfo._id];
+        [[ADCache share].cache removeObjectForKey:bookinfo._id];
     }
 }
 
 - (NSMutableArray *)books{
     if (!_books) {
         _books = [NSMutableArray array];
-        NSArray *obj = (NSArray *)[bookCache objectForKey:bookCacheKey];
+        NSArray *obj = (NSArray *)[[ADCache share].cache objectForKey:bookCacheKey];
         if (obj) {
             [_books addObjectsFromArray:obj];
         }

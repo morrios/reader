@@ -8,19 +8,31 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class ADBookPageModel;
 
 @interface ADReaderSetting : NSObject
-//配置属性
-@property (nonatomic ,assign)CGFloat width;
-@property (nonatomic, assign)CGFloat fontSize;
-@property (nonatomic, assign)CGFloat lineSpace;
-@property (nonatomic, strong)UIColor *textColor;
-@property (nonatomic, strong)UIFont *font;
 
 @property (nonatomic, strong)NSDictionary *readerAttributes;
+@property (nonatomic, strong)ADBookPageModel *setting;
 
++ (ADReaderSetting *)shareInstance;
 
+@end
 
-+ (instancetype)shareInstance;
-
+@interface ADBookPageModel : NSObject <NSCoding>
+@property (nonatomic, assign)CGFloat fontSize;
+//行距
+@property (nonatomic, assign)CGFloat lineSpace;
+//字体颜色
+@property (nonatomic, strong)UIColor *textColor;
+//字体
+@property (nonatomic, copy)NSString *fontName;
+//字体
+@property (nonatomic, strong)UIFont *font;
+//背景色
+@property (nonatomic, strong)UIColor *backViewColor;
+//背景色
+@property (nonatomic, assign)CGFloat alphaValue;
+//繁体
+@property (nonatomic, assign)BOOL unsimplified;
 @end

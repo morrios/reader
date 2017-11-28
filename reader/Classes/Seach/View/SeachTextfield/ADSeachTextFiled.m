@@ -7,12 +7,9 @@
 //
 
 #import "ADSeachTextFiled.h"
-#import "AFNetworking.h"
-
+#import "ADSearchTask.h"
 @interface ADSeachTextFiled ()
 
-@property (nonatomic, strong) AFHTTPSessionManager *manager;
-@property (nonatomic, strong) NSMutableArray *arrayOfTasks;
 
 @end
 
@@ -26,9 +23,7 @@
     [super awakeFromNib];
     NSLog(@"awakeFromNib");
     self.textfiled.delegate = self;
-    self.manager = [[AFHTTPSessionManager alloc] init];
-    self.manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    self.arrayOfTasks = [NSMutableArray array];
+
 }
 
 #pragma mark - delegate
@@ -43,35 +38,18 @@
     if (str.length==0) {
         return YES;
     }
-    [self.arrayOfTasks enumerateObjectsUsingBlock:^(NSURLSessionDataTask *taskObj, NSUInteger idx, BOOL *stop) {
-        [taskObj cancel];
-    }];
-    
-    /// empty the arraOfTasks
-    [self.arrayOfTasks removeAllObjects];
-    
-    NSString *urlString = @"http://api.zhuishushenqi.com/book/auto-complete";
-    NSDictionary *dict = [NSDictionary dictionaryWithObject:str forKey:@"query"];
-    /// init new task
-    WeakSelf
-    NSURLSessionDataTask *task = [self.manager GET:urlString parameters:dict progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
-        StrongSelf
-        if (strongSelf.changeBlock) {
-            strongSelf.changeBlock(responseObject, nil);
+    [[ADSearchTask share] requestWithKeyWords:str responseObject:^(id responseObject, NSError *errpr) {
+        if (!errpr) {
+            if (self.changeBlock) {
+                self.changeBlock(responseObject);
+            }
+            if([self.delegate respondsToSelector:@selector(ADSeachTextFiled:Value:)]) {
+                [self.delegate ADSeachTextFiled:self.textfiled Value:responseObject];
+            }
         }
         
-        if ([strongSelf.delegate respondsToSelector:@selector(TextFiled:Value:responseObject:)]) {
-            [strongSelf.delegate TextFiled:textField Value:str responseObject:responseObject];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        StrongSelf
-        strongSelf.changeBlock(nil, error);
     }];
     
-    [self.arrayOfTasks addObject:task];
 
     return YES;
 }

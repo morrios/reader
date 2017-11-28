@@ -8,7 +8,7 @@
 
 #import "ADDisplayView.h"
 #import "ADReaderSetting.h"
-
+#import "NSString+AD.h"
 
 @implementation ADDisplayView
 
@@ -34,7 +34,7 @@
     _content = content;
     if (content) {
         ADReaderSetting *setting = [ADReaderSetting shareInstance];
-        
+        content = [ADReaderSetting shareInstance].setting.unsimplified?[content reverseString]:content;
         NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:content attributes:setting.readerAttributes];
         CTFramesetterRef setterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)att);
         CGPathRef pathRef = CGPathCreateWithRect(self.bounds, NULL);
@@ -58,7 +58,7 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     [super drawRect:rect];
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     
     //1.获取当前绘图上下文
     CGContextRef context = UIGraphicsGetCurrentContext();

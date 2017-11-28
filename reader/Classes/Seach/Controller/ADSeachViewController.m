@@ -19,27 +19,32 @@
 #import "SeachBookListTableViewCell.h"
 #import "YYModel.h"
 #import "ADBooKInfoViewController.h"
+#import "ADRecommendCell.h"
+#import "ADSearchTask.h"
 
-static NSString *const idCollectionViewCell = @"idCollectionViewCell";
 static NSString *const idHistroyTableviewCell = @"idHistroyTableviewCell";
 static NSString *const idSeachListTableviewCell = @"idSeachListTableviewCell";
+static NSString *const idSeachCollectionCell = @"idSeachCollectionCell";
 static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
 
-@interface ADSeachViewController ()<ADTableViewDelegate>
+@interface ADSeachViewController ()<UITableViewDelegate,UITableViewDataSource,ADTableViewDelegate,ADSearchTaskDelegate>
 @property (nonatomic, strong) UIScrollView *scrollview;
 @property (nonatomic, strong) ADSeachTextFiled *seachTextFiled;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) UITableView *historyTableview;
+@property (nonatomic, strong) UITableView *historyTableview;//d
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UITableView *seachListTableView;
 
 @property (nonatomic, strong) NSMutableArray *hotwordDatas;
 @property (nonatomic, strong) NSMutableArray *historyDatas;
-@property (nonatomic, strong) NSArray *colorArr;
 
-@property (nonatomic, strong) ADSeachDataSouce *seachDatasouce;
+@property (nonatomic, strong) ADSeachDataSouce *seachDatasouce;//d
+
 @property (nonatomic, strong) ADSeachDelegate *delegateFlowlayout;
-@property (nonatomic, strong) ADTableViewDataSouce *historyDataSouce;
+@property (nonatomic, strong) ADTableViewDataSouce *historyDataSouce;//d
+@property (nonatomic, strong) ADTableViewDataSouce *dataSouce;
 @property (nonatomic, strong) ADTableViewDataSouce *seachListDataSouce;
+@property (nonatomic, strong) ADSearchTask *searchTask;
 
 @end
 
@@ -50,13 +55,11 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"搜索";
-    [self setColorArray];
-    [self.view addSubview:self.scrollview];
     [self.view addSubview:self.seachTextFiled];
-    [self.scrollview addSubview:self.collectionView];
-    [self.scrollview addSubview:self.historyTableview];
+    [self.view addSubview:self.tableView];
     [self.view addSubview:self.seachListTableView];
-    
+    self.searchTask = [[ADSearchTask alloc] init];
+    self.searchTask.delegate = self;
     [self reloadDatas];
     [self.seachListTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -88,9 +91,7 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
         StrongSelf
         [strongSelf.hotwordDatas removeAllObjects];
         [strongSelf.hotwordDatas addObjectsFromArray:words];
-        strongSelf.seachDatasouce.items = words;
-        strongSelf.delegateFlowlayout.items = words;
-        [strongSelf.collectionView reloadData];
+        [strongSelf.tableView reloadData];
         
     }];
 }
@@ -105,6 +106,9 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
     }
 }
 - (void)loadBookDesList:(id)responseObject{
+    self.seachListTableView.backgroundColor = [UIColor colorWithHexString:@"#F5F1EC"];
+    self.seachListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     NSArray *arrT = [NSArray yy_modelArrayWithClass:[ADListBookModel class] json:responseObject[@"books"]];
     self.seachListDataSouce.cellIdentifier = idBookListTableviewCell;
     self.seachListDataSouce.items = arrT;
@@ -113,6 +117,21 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
 }
 
 #pragma mark - ADTableViewDelegate
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section ==1) {
+        CGFloat height = 60;
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+        view.backgroundColor = [UIColor clearColor];
+        
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, kScreenWidth, height-20)];
+        lable.text = @"搜索历史";
+        [view addSubview:lable];
+        lable.font = [UIFont boldSystemFontOfSize:15];
+        
+        return view;
+    }
+    return nil;
+}
 -(void)adTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.seachListDataSouce.cellIdentifier isEqualToString:idSeachListTableviewCell]) {
         NSString *word = self.seachListDataSouce.items[indexPath.row];
@@ -134,8 +153,80 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return 64;
+    }
+    return 0;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        ADRecommendCell *cell = (ADRecommendCell *)[tableView dequeueReusableCellWithIdentifier:idSeachCollectionCell];
+        cell.seachDatasouce.items = [self.hotwordDatas copy];
+        cell.delegateFlowlayout.items = [self.hotwordDatas copy];
+        cell.delegateFlowlayout.selectBlock = ^(id value) {
+            [self SearchTaskValue:@"" responseObject:value];
+        };
+        [cell.collectionView reloadData];
+        return cell;
+    }else{
+        ADHistroyTableViewCell *cell = (ADHistroyTableViewCell *)[tableView dequeueReusableCellWithIdentifier:idHistroyTableviewCell];
+        cell.nameLable.text = @"ss";
+        return cell;
+    }
+    
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self.seachListDataSouce.cellIdentifier isEqualToString:idSeachListTableviewCell]) {
+        NSString *word = self.seachListDataSouce.items[indexPath.row];
+        WeakSelf
+        [ADReaderNetWorking seach_GetBookList:word complete:^(id responseObject, NSError *error) {
+            if (error) {
+                return ;
+            }
+            StrongSelf
+            [strongSelf.view endEditing:YES];
+            [strongSelf loadBookDesList:responseObject];
+            
+        }];
+    }else if ([self.seachListDataSouce.cellIdentifier isEqualToString:idBookListTableviewCell]){
+        ADListBookModel *model = self.seachListDataSouce.items[indexPath.row];
+        ADBooKInfoViewController *bookInfo = [[ADBooKInfoViewController alloc] init];
+        bookInfo.bookid = model._id;
+        [self.navigationController pushViewController:bookInfo animated:YES];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 200;
+    }
+    return 44;
+}
+
 - (void)adScrollViewDidScroll:(UIScrollView *)scrollview{
     [self.view endEditing:YES];
+}
+#pragma mark - session task
+- (void)SearchTaskValue:(id)value responseObject:(id)object{
+    NSArray *items = object[@"keywords"];
+    if (items.count>0) {
+        if (self.seachListTableView.hidden) {
+            self.seachListTableView.hidden = NO;
+        }
+        self.seachListDataSouce.items = object[@"keywords"];
+        self.seachListDataSouce.cellIdentifier = idSeachListTableviewCell;
+        self.seachListDataSouce.rowHeight = 44;
+        [self.seachListTableView reloadData];
+    }else{
+        self.seachListTableView.hidden = YES;
+    }
 }
 
 #pragma mark - setter && getter
@@ -147,11 +238,22 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
     return _scrollview;
 }
 
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.seachTextFiled.bottom, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [_tableView registerNib:[UINib nibWithNibName:@"ADHistroyTableViewCell" bundle:nil] forCellReuseIdentifier:idHistroyTableviewCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"ADRecommendCell" bundle:nil] forCellReuseIdentifier:idSeachCollectionCell];
+    }
+    return _tableView;
+}
 - (ADSeachTextFiled *)seachTextFiled{
     if (!_seachTextFiled) {
         _seachTextFiled = [ADSeachTextFiled seachTextFiled];
         WeakSelf
-        _seachTextFiled.changeBlock = ^(id responseObject, NSError *errpr) {
+        _seachTextFiled.changeBlock = ^(id responseObject) {
             StrongSelf
             NSArray *items = responseObject[@"keywords"];
             if (items.count>0) {
@@ -162,41 +264,16 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
                 strongSelf.seachListDataSouce.cellIdentifier = idSeachListTableviewCell;
                 strongSelf.seachListDataSouce.rowHeight = 44;
                 [strongSelf.seachListTableView reloadData];
-                strongSelf.seachListTableView.backgroundColor = [UIColor colorWithHexString:@"#F5F1EC"];
 
             }else{
                 strongSelf.seachListTableView.hidden = YES;
             }
             
         };
-        _seachTextFiled.frame = CGRectMake(0, 64, kScreenWidth, 50);
+        _seachTextFiled.frame = CGRectMake(0, ADNavBarHeight, kScreenWidth, 50);
     }
     return _seachTextFiled;
 }
-
-- (UICollectionView *)collectionView{
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 200) collectionViewLayout:flowLayout];
-        
-        CollectionViewCellConfigureBlock block = ^(ADSeachTagCell *cell, NSString *name, NSIndexPath *indexpath){
-            cell.keyword = name;
-            NSInteger index = indexpath.row % 6;
-            cell.backgroundColor = self.colorArr[index];
-        };
-        self.seachDatasouce = [[ADSeachDataSouce alloc] initWithItems:self.hotwordDatas cellIdentifier:idCollectionViewCell configureCellBlock:block];
-        _collectionView.dataSource = _seachDatasouce;
-        
-        self.delegateFlowlayout = [[ADSeachDelegate alloc] initWithItems:self.hotwordDatas];
-        _collectionView.delegate = self.delegateFlowlayout;
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        [_collectionView registerNib:[UINib nibWithNibName:@"ADSeachTagCell" bundle:nil] forCellWithReuseIdentifier:idCollectionViewCell];
-        
-    }
-    return _collectionView;
-}
-
 - (UITableView *)historyTableview{
     if (!_historyTableview) {
         _historyTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, self.collectionView.bottom, kScreenWidth, 300) style:UITableViewStylePlain];
@@ -231,9 +308,9 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
         };
         _seachListDataSouce = [[ADTableViewDataSouce alloc] initWithCellIdentifier:idSeachListTableviewCell ConfigureCellBlock:ConfigureBlock];
         _seachListDataSouce.delegate = self;
-        
         _seachListDataSouce.rowHeight = 44;
         _seachListTableView.dataSource = _seachListDataSouce;
+//        _seachListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _seachListTableView.delegate = _seachListDataSouce;
         [_seachListTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:idSeachListTableviewCell];
         [_seachListTableView registerNib:[UINib nibWithNibName:@"SeachBookListTableViewCell" bundle:nil] forCellReuseIdentifier:idBookListTableviewCell];
@@ -256,16 +333,6 @@ static NSString *const idBookListTableviewCell = @"idBookListTableviewCell";
     return _historyDatas;
 }
 
-- (void)setColorArray{
-    UIColor *color1 = [UIColor colorWithHexString:@"#92C6EE"];
-    UIColor *color2 = [UIColor colorWithHexString:@"#BE6CCE"];
-    UIColor *color3 = [UIColor colorWithHexString:@"#F4BB82"];
-    UIColor *color4 = [UIColor colorWithHexString:@"#93CED4"];
-    UIColor *color5 = [UIColor colorWithHexString:@"#6BCBB7"];
-    UIColor *color6 = [UIColor colorWithHexString:@"#E58F90"];
-    if (!_colorArr) {
-        _colorArr = [NSArray arrayWithObjects:color1,color2,color3,color4,color5,color6, nil];
-    }
-}
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ADSeachDelegate.h"
+#import "ADSearchTask.h"
 
 @implementation ADSeachDelegate
 
@@ -23,6 +24,11 @@
     NSString *str = self.items[indexPath.row];
     
     NSLog(@"select");
+    [[ADSearchTask share] requestWithKeyWords:str responseObject:^(id responseObject, NSError *errpr) {
+        if (!errpr) {
+            self.selectBlock(responseObject);
+        }
+    }];
 }
 
 //设置每个item的尺寸
@@ -33,17 +39,7 @@
     return CGSizeMake(width, 25);
 }
 
-//footer的size
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-//{
-//    return CGSizeMake(10, 10);
-//}
 
-//header的size
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    return CGSizeMake(10, 10);
-//}
 
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -55,7 +51,7 @@
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10;
+    return 0;
 }
 
 

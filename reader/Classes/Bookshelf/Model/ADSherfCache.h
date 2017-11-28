@@ -12,7 +12,7 @@
 
 @class ADSherfCusModel;
 
-static YYCache *bookCache = nil;
+//static YYCache *bookCache = nil;
 
 @interface ADSherfCache : NSObject
 

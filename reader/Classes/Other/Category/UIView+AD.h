@@ -12,4 +12,6 @@
 @property (nonatomic, assign) CGFloat tx;
 
 @property (nonatomic, assign) CGFloat ty;
+- (UIViewController *)presentViewController;
+
 @end

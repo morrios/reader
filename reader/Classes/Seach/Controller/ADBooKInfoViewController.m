@@ -89,7 +89,6 @@
     
 }
 
-
 - (void)loadDatas{
     WeakSelf
     [ADReaderNetWorking seach_GetBookInfoWithId:self.bookid complete:^(id responseObject, NSError *error) {

@@ -15,18 +15,34 @@
 #import "YYCategories.h"
 #import "SVProgressHUD.h"
 #import "MBProgressHUD.h"
-#import "ADSqlTool.h"
+#import "NSArray+AD.h"
 
 #define ImageBaseUrl @"http://statics.zhuishushenqi.com"
 #define ChapterBaseUrl @"http://chapterup.zhuishushenqi.com/chapter/"
 #define kYReaderLeftSpace 20.0
 #define kYReaderRightSpace 20.0
-#define kYReaderTopSpace 40.0
+#define kYReaderTopSpace 50.0
 #define kYReaderBottomSpace 40.0
+static NSString *const cacheReadSetting = @"readSetting";
+
+static NSString *const aSystemFontName = @"SystemFontName";
+
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 #define StrongSelf typeof(weakSelf) __strong strongSelf = weakSelf;
 
+#define UIScreen_SetLightValue ([[NSUserDefaults standardUserDefaults] setFloat:[UIScreen mainScreen].brightness forKey:@"ADUserLightValue"])
+
+/*****宏定义 *****/
+#define isIPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? [[UIScreen mainScreen] currentMode].size.height==2436 : NO)
+//导航栏高度
+#define  ADNavBarHeight  isIPhoneX ? 88.0 : 64.0
+//底部Tabbar 高度
+#define ADTabBarHeight  isIPhoneX ? 83.0 : 49.0
+///底部Tabbar在iPhoneX上增加高度
+#define ADTabBarHeight_Add  isIPhoneX ? 34.0 : 0.0
+//状态栏高度
+#define  ADStatusBarHeight  isIPhoneX ? 44.0 : 20.0
 /*
  XCode LLVM XXX - Preprocessing中Debug会添加 DEBUG=1 标志
  */

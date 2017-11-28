@@ -17,14 +17,13 @@ PODS:
   - FMDB (2.7.2):
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
-  - IQKeyboardManager (4.0.11)
-  - Masonry (1.0.2)
+  - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
-  - SVProgressHUD (2.1.2)
+  - SVProgressHUD (2.2.1)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
@@ -34,7 +33,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - FMDB
-  - IQKeyboardManager (~> 4.0.8)
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MJRefresh (~> 3.1.10)
@@ -47,16 +45,15 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
-  IQKeyboardManager: 83eae5318483a34eb2069ef413d195b97605232e
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
-  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 71b8654acd4500834f011b22cd7e895d1e3968f2
+PODFILE CHECKSUM: 3e1746ed6742666bd67274cfa119d6b9b988bcb6
 
 COCOAPODS: 1.2.1
