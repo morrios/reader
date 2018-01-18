@@ -66,32 +66,30 @@ static NSString *const idcell = @"idcell";
     [self.navigationController pushViewController:search animated:YES];
 }
 - (void)queryBookList{
-    self.datas = [ADSherfCache query];
+    self.datas = [ADSherfCache queryDesending];
     self.ShelfDataSouce.items = self.datas;
     [self.tableview reloadData];
     
-//    WeakSelf
-//    [ADReaderNetWorking Home_getReadBookInfo:self.datas complete:^(id responseObject, NSError *error) {
-//        StrongSelf
-//        NSArray *arrT = [NSArray yy_modelArrayWithClass:[ADSherfModel class] json:responseObject];
-//        NSLog(@"%@", arrT.firstObject);
-//        strongSelf.ShelfDataSouce.items = strongSelf.datas;
-//        [strongSelf.tableview reloadData];
-//    }];
 }
 
 #pragma mark - ADTableViewDelegate
 - (void)adTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ADPageViewController *pageVc = [[ADPageViewController alloc] init];
-    ADBookInfo *model = self.datas[indexPath.row];
+    ADSherfCusModel *model = self.datas[indexPath.row];
     pageVc.bookId = model._id;
     pageVc.bookName = model.title;
+    [model updateModelDate];
 //    UIViewController *vc = [[ADrawerManager instance] installCenterViewController:pageVc leftView:[UIView new]];
     [self.navigationController pushViewController:pageVc animated:YES];
 }
 - (void)deleteCell:(id)item indexpath:(NSIndexPath *)indexpath{
-    
+    ADSherfCusModel *book = (ADSherfCusModel *)item;
+    [ADSherfCache removeBookId:book._id];
+    [self.datas removeObjectAtIndex:indexpath.row];
+    self.ShelfDataSouce.items = self.datas;
+    [self.tableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexpath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableview reloadData];
 }
 #pragma mark - setter & getter
 - (UITableView *)tableview{
@@ -111,6 +109,7 @@ static NSString *const idcell = @"idcell";
         _ShelfDataSouce.editEnable = YES;
         _ShelfDataSouce.cellDeleteBlock = ^(id item, NSIndexPath *indexpath) {
             StrongSelf
+            [strongSelf deleteCell:item indexpath:indexpath];
             /*
              [_dataMArr removeObjectAtIndex:indexPath.row];
              [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];

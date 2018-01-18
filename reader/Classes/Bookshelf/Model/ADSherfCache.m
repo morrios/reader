@@ -40,11 +40,25 @@ static NSString *const bookCacheKey = @"info";
 + (void)removeBook:(ADBookInfo *)bookinfo{
     [[ADSherfCache share] removeBook:bookinfo];
 }
++ (void)removeBookId:(NSString *)bookId{
+    [[ADSherfCache share] removeBookId:bookId];
+}
 + (ADSherfCusModel *)ADObjectForId:(NSString *)bookid{
     return (ADSherfCusModel *)[[ADCache share].cache objectForKey:bookid];
 }
 + (NSMutableArray *)query{
     return [[ADSherfCache share] query];
+}
++ (NSMutableArray *)queryDesending{
+    NSMutableArray *query = [[ADSherfCache share] query];
+    query = [query sortedArrayUsingComparator:^NSComparisonResult(ADSherfCusModel*  _Nonnull obj1, ADSherfCusModel *  _Nonnull obj2) {
+        if (obj1.updateDate > obj2.updateDate) {
+            return NSOrderedDescending;
+        }else{
+            return NSOrderedAscending;
+        }
+    }];
+    return query;
 }
 
 + (void)UpdateWithBookInfo:(ADSherfCusModel *)bookinfo{
@@ -122,7 +136,12 @@ static NSString *const bookCacheKey = @"info";
         [[ADCache share].cache removeObjectForKey:bookinfo._id];
     }
 }
-
+- (void)removeBookId:(NSString *)bookid{
+    if ([self queryWithBookId:bookid]) {
+        [self.books removeObject:bookid];
+        [[ADCache share].cache removeObjectForKey:bookid];
+    }
+}
 - (NSMutableArray *)books{
     if (!_books) {
         _books = [NSMutableArray array];
@@ -149,6 +168,7 @@ static NSString *const bookCacheKey = @"info";
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeInteger:self.chapter forKey:@"chapter"];
     [aCoder encodeInteger:self.pageIndex forKey:@"pageIndex"];
+    [aCoder encodeObject:self.updateDate forKey:@"updateDate"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
@@ -163,9 +183,21 @@ static NSString *const bookCacheKey = @"info";
     self.title = [aDecoder decodeObjectForKey:@"title"];
     self.chapter = [aDecoder decodeIntegerForKey:@"chapter"];
     self.pageIndex = [aDecoder decodeIntegerForKey:@"pageIndex"];
+    self.updateDate = [aDecoder decodeObjectForKey:@"updateDate"];
     return self;
 
    
+}
+
+- (NSString *)updateDate{
+    if (!_updateDate) {
+        _updateDate = [NSString stringWithFormat:@"%ld",time(NULL)];
+    }
+    return _updateDate;
+}
+- (void)updateModelDate{
+    _updateDate = [NSString stringWithFormat:@"%ld",time(NULL)];
+
 }
 
 @end

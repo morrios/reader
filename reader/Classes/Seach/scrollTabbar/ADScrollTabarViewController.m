@@ -90,6 +90,7 @@ static NSInteger const baseTag = 879;
         button.tag = baseTag+i;
         [button addTarget:self action:@selector(buttonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(x, y, buttonWidth, buttonHeigth);
+        NSLog(@"button = %@", button);
         [self.tabbarScrollview addSubview:button];
     }
     CGFloat lineHeight = 2;

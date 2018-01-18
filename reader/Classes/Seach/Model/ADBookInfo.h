@@ -35,5 +35,6 @@
 @property(nonatomic,strong)NSString *copyright;
 @property(nonatomic,assign)BOOL _gg;
 @property(nonatomic,strong)NSString *discount;
+@property(nonatomic,strong)NSString *updateDate;
 
 @end

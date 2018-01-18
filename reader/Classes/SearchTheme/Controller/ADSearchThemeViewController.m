@@ -23,7 +23,7 @@
 static NSString *const idSearchListCell = @"idSearchListCell";
 static NSString *const idSearchBookListCell = @"idSearchBookListCell";
 
-@interface ADSearchThemeViewController ()<ADTableViewDelegate,ADSearchTaskDelegate>
+@interface ADSearchThemeViewController ()<ADTableViewDelegate,ADSearchTaskDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView *seachListTableView;
 @property (nonatomic, strong) ADTableViewDataSouce *seachListDataSouce;
 @property (nonatomic, strong) NSMutableArray *keyWords;
@@ -41,6 +41,10 @@ static NSString *const idSearchBookListCell = @"idSearchBookListCell";
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.searchHeadView.inputF becomeFirstResponder];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,7 +70,7 @@ static NSString *const idSearchBookListCell = @"idSearchBookListCell";
         NSString *word = self.seachListDataSouce.items[indexPath.row];
         WeakSelf
         tableView.userInteractionEnabled = NO;
-        [SVProgressHUD showWithStatus:@"搜索..."];
+        [SVProgressHUD showWithStatus:@"努力搜索中..."];
         [ADReaderNetWorking seach_GetBookList:word complete:^(id responseObject, NSError *error) {
             tableView.userInteractionEnabled = YES;
             [SVProgressHUD dismiss];
@@ -93,6 +97,10 @@ static NSString *const idSearchBookListCell = @"idSearchBookListCell";
     }
 }
 #pragma mark - method
+- (void)adScrollViewDidScroll:(UIScrollView *)scrollview{
+    [self.view endEditing:YES];
+}
+
 - (void)loadBookDesList:(id)responseObject{
     NSArray *arrT = [NSArray yy_modelArrayWithClass:[ADListBookModel class] json:responseObject[@"books"]];
     _seachListDataSouce.cellIdentifier = idSearchBookListCell;
@@ -148,7 +156,7 @@ static NSString *const idSearchBookListCell = @"idSearchBookListCell";
         [_seachListTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:idSearchListCell];
         [_seachListTableView registerNib:[UINib nibWithNibName:@"ADSeachThemeListTableViewCell" bundle:nil] forCellReuseIdentifier:idSearchListCell];
         [_seachListTableView registerNib:[UINib nibWithNibName:@"ADSearchBookListCell" bundle:nil] forCellReuseIdentifier:idSearchBookListCell];
-        _seachListTableView.bounces = NO;
+//        _seachListTableView.bounces = NO;
         _seachListTableView.hidden = YES;
 //        _seachListTableView.tableHeaderView = self.searchHeadView;
     }

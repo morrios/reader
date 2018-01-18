@@ -16,6 +16,7 @@ static NSString *const idcell = @"idcell";
 
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UILabel *bookNameL;
 @property (nonatomic, strong) ADTableViewDataSouce *dataSource;
 
 @end
@@ -66,7 +67,10 @@ static NSString *const idcell = @"idcell";
         [self scrollToIndex:_chapterIndex];
     }
 }
-
+- (void)setBookName:(NSString *)bookName{
+    _bookName = bookName;
+    self.bookNameL.text = bookName;
+}
 - (void)scrollToIndex:(NSUInteger)index
 {
     [self scrollToIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atPosition:UITableViewScrollPositionMiddle];

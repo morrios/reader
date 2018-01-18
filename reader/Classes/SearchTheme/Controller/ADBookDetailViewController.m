@@ -44,6 +44,9 @@
 @property (weak, nonatomic) IBOutlet UIView *desView;
 @property (weak, nonatomic) IBOutlet UILabel *desLable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *desViewHeightConstraint;
+@property (nonatomic, strong) UIVisualEffectView *effectView ;
+
+
 @property (nonatomic, strong) ADBookInfo *model;
 
 
@@ -63,15 +66,17 @@
     // Do any additional setup after loading the view from its nib.
     [self setUpViews];
     [self loadDatas];
-    
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
+
 }
 - (IBAction)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)viewDidLayoutSubviews{
-    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-    effectView.frame = self.topBackImageView.bounds;
-    [self.topBackImageView addSubview:effectView];
+    [super viewDidLayoutSubviews];
+    self.effectView.frame = self.topBackImageView.bounds;
+//    self.contentViewHeight.constant = self.desView.bottom+30;
+
 }
 - (void)setUpViews{
     if (@available(iOS 11.0, *)) {
@@ -79,29 +84,38 @@
     }else{
         self.automaticallyAdjustsScrollViewInsets=NO;
     }
+    self.contentViewHeight.constant = kScreenHeight;
+    self.contentViewWidth.constant = kScreenWidth;
+    self.scrollView.bounces = NO;
+    self.effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    [self.topBackImageView addSubview:self.effectView];
+
     [self.likeBtn setImage:[UIImage imageNamed:@"bookInfo_markSelected"] forState:UIControlStateSelected];
     self.topView.backgroundColor = [UIColor clearColor];
     self.likeBtn.backgroundColor = [UIColor whiteColor];
     self.likeBtn.layer.cornerRadius = 15;
-    self.likeBtn.layer.masksToBounds = YES;
     self.readButton.layer.cornerRadius = 15;
-    self.readButton.layer.masksToBounds = YES;
-    
     self.topBackImageView.image = [UIImage imageWithColor:[UIColor whiteColor]];
-    
-    
     //设置阴影
-    UIColor *backColor = [UIColor colorWithHexString:@"#A7A7A7"];
-    [self setShadow:self.likeBtn color:backColor];
-    [self setShadow:self.readButton color:backColor];
-    [self setShadow:self.NumView color:backColor];
-    [self setShadow:self.desView color:backColor];
-    
-    
+    [self setButtonShadow:self.likeBtn];
+    [self setButtonShadow:self.readButton];
+    [self setButtonShadow:self.coverImageView];
+    [self setViewShadow:_topBackImageView];
+    [self setViewShadow:self.NumView];
+    [self setViewShadow:self.readButton];
+
 }
-- (void)setShadow:(UIView *)view color:(UIColor *)color{
+- (void)setButtonShadow:(UIView *)view{
+    UIColor *backColor = [UIColor colorWithHexString:@"#A7A7A7"];
+    [self setShadow:view color:backColor opacity:0.8];
+}
+- (void)setViewShadow:(UIView *)view{
+    UIColor *backColor = [UIColor colorWithHexString:@"#A7A7A7"];
+    [self setShadow:view color:backColor opacity:0.3];
+}
+- (void)setShadow:(UIView *)view color:(UIColor *)color opacity:(CGFloat)opacity{
     view.layer.shadowColor = color.CGColor;
-    view.layer.shadowOpacity = 0.3f;
+    view.layer.shadowOpacity = opacity;
     view.layer.shadowRadius = 4.f;
     view.layer.shadowOffset = CGSizeMake(4,4);
     view.layer.shadowOffset = CGSizeMake(0,0);
@@ -144,17 +158,14 @@
             return;
         }
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-        
-        UIColor *firstColor = [UIColor whiteColor];
+            UIColor *firstColor = [UIColor whiteColor];
         UIColor *secondColor = [UIColor colorWithHexString:@"#303745"];
 
         PaletteColorModel *model = allModeColorDic[@"light_muted"];
         firstColor = [UIColor colorWithHexString:model.imageColorString];
         model = allModeColorDic[@"vibrant"];
         secondColor = [UIColor colorWithHexString:model.imageColorString];
-        
-        
-        gradientLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];//这里颜色渐变
+                gradientLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];//这里颜色渐变
         gradientLayer.locations = @[@0.2, @1.0];//颜色位置
         gradientLayer.startPoint = CGPointMake(0, 0);
         gradientLayer.endPoint = CGPointMake(0.0, 1.0);
@@ -186,10 +197,44 @@
     self.desLable.text = info.longIntro;
     UIFont *font = [UIFont systemFontOfSize:12];
     CGFloat width = kScreenWidth - 15*2;
-    CGFloat height = [info.longIntro heightForFont:font width:width];
-    self.desViewHeightConstraint.constant = height+45+10;
+    [self setLabelSpace:self.desLable withValue:info.longIntro withFont:font];
+    CGFloat height =[self getSpaceLabelHeight:info.longIntro withFont:font withWidth:width];
+    CGFloat desHeight =  height+45+10;
+    self.desViewHeightConstraint.constant = desHeight;
+    self.contentViewHeight.constant = self.desView.top + desHeight + 50;
+    NSLog(@"%f", self.contentViewHeight.constant);
     self.likeBtn.selected = [ADSherfCache queryWithBookId:info._id];
 
+}
+-(void)setLabelSpace:(UILabel*)label withValue:(NSString*)str withFont:(UIFont*)font {
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 3; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    //设置字间距 NSKernAttributeName:@1.5f
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@1.0f };
+    NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:str attributes:dic];
+    label.attributedText = attributeStr;
+}
+-(CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width {
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6;
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@1.0f
+                          };
+    CGSize size = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
+    return size.height;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

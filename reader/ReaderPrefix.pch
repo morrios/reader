@@ -16,6 +16,7 @@
 #import "SVProgressHUD.h"
 #import "MBProgressHUD.h"
 #import "NSArray+AD.h"
+#import "UIColor+additions.h"
 
 #define ImageBaseUrl @"http://statics.zhuishushenqi.com"
 #define ChapterBaseUrl @"http://chapterup.zhuishushenqi.com/chapter/"

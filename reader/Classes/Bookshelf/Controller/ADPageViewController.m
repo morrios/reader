@@ -19,7 +19,7 @@
 #import "UIView+AD.h"
 #import "ADDownloadSheet.h"
 typedef void(^getChapter)(ADChapterContentModel *model);
-static CGFloat backViewAlpha = 0.8;
+static CGFloat backViewAlpha = 0.4;
 @interface ADPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,ADPageMenuDelegate,ADMenuBottomDelegate>
 
 @property (nonatomic, strong) UIPageViewController *readViewController;
@@ -81,7 +81,7 @@ static CGFloat backViewAlpha = 0.8;
 }
 #pragma mark Delegate
 - (void)goBack{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)MenuBottomChapterActionType:(ChapterActionType)actionType{
     if (actionType == ChapterActionTypeNext) {
@@ -385,7 +385,7 @@ TapActionTypeMore
     if (!_backView) {
         _backView = [[UIView alloc] initWithFrame:self.view.bounds];
         _backView.backgroundColor = [UIColor blackColor];
-        _backView.alpha = 0.85;
+        _backView.alpha = 0.35;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetLeftView)];
         [_backView addGestureRecognizer:tap];
         _backView.hidden = YES;
@@ -398,6 +398,7 @@ TapActionTypeMore
         _leftView = [ADMenuLeftView leftView];
         _leftView.frame = CGRectMake(-leftViewWidth(), 0, leftViewWidth(), kScreenHeight);
         _leftView.hidden = YES;
+        _leftView.bookName = self.bookName;
         WeakSelf
         _leftView.listSelect = ^(NSUInteger chapterIndex, ADChapterModel *model) {
             StrongSelf

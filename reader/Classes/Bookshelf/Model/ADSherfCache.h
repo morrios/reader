@@ -22,11 +22,13 @@
 + (ADSherfCusModel *)ADObjectForId:(NSString *)bookid;
 
 + (void)removeBook:(ADBookInfo *)bookinfo;
++ (void)removeBookId:(NSString *)bookId;
 + (void)UpdateWithBookInfo:(ADSherfCusModel *)bookinfo;
 + (void)UpdateHistoryWithBookId:(NSString *)bookID chapter:(NSInteger)chapter pageIndex:(NSInteger)pageIndex;
 + (ADSherfCusModel *)QueryHistoryWithBookId:(NSString *)bookID;
 
 + (NSMutableArray *)query;
++ (NSMutableArray *)queryDesending;
 
 @end
 
@@ -42,7 +44,8 @@
 
 @property(nonatomic,assign)NSInteger chapter;
 @property(nonatomic,assign)NSInteger pageIndex;
-
+@property(nonatomic,strong)NSString *updateDate;
+- (void)updateModelDate;
 @end
 
 

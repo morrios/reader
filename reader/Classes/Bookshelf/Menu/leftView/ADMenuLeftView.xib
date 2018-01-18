@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,9 +17,20 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWA-ZG-Q98">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnl-H3-1eX">
+                            <rect key="frame" x="15" y="25" width="345" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.128926078680203" green="0.128926078680203" blue="0.128926078680203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="gnl-H3-1eX" firstAttribute="leading" secondItem="AWA-ZG-Q98" secondAttribute="leading" constant="15" id="NIg-DF-m6f"/>
+                        <constraint firstAttribute="trailing" secondItem="gnl-H3-1eX" secondAttribute="trailing" constant="15" id="ZIg-B9-wOH"/>
                         <constraint firstAttribute="height" constant="71" id="wL0-x1-xVz"/>
+                        <constraint firstItem="gnl-H3-1eX" firstAttribute="centerY" secondItem="AWA-ZG-Q98" secondAttribute="centerY" id="zhA-8O-JjL"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mYX-Y5-oV0">
@@ -40,6 +51,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bookNameL" destination="gnl-H3-1eX" id="jhY-mj-3bF"/>
                 <outlet property="tableview" destination="mYX-Y5-oV0" id="KTf-a6-LSH"/>
                 <outlet property="topView" destination="AWA-ZG-Q98" id="R1M-ca-Thh"/>
             </connections>

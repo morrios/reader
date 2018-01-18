@@ -33,6 +33,7 @@
     self.authorL.textColor = secColor;
     self.bookKindL.textColor = secColor;
     self.describeL.textColor = secColor;
+    self.readerNumL.textColor = [UIColor c3];
     
     self.bookNameL.font = mainFont();
     self.lastChapterL.font = mainFont();

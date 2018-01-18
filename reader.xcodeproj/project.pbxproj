@@ -1077,14 +1077,6 @@
 		1880DD4F1FBC1EC700574C38 /* ADRankTableViewHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1880DD4E1FBC1EC700574C38 /* ADRankTableViewHeadView.xib */; };
 		1880DD561FBC416300574C38 /* ADRankSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880DD541FBC416300574C38 /* ADRankSectionTableViewCell.m */; };
 		1880DD571FBC416300574C38 /* ADRankSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1880DD551FBC416300574C38 /* ADRankSectionTableViewCell.xib */; };
-		188333131F710D7F00C8014D /* ADTabbarSherfSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1883330B1F710D7F00C8014D /* ADTabbarSherfSelected@2x.png */; };
-		188333141F710D7F00C8014D /* ADTabbarSearch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1883330C1F710D7F00C8014D /* ADTabbarSearch@2x.png */; };
-		188333151F710D7F00C8014D /* ADTabbarSearch@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1883330D1F710D7F00C8014D /* ADTabbarSearch@3x.png */; };
-		188333161F710D7F00C8014D /* ADTabbarSherfSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1883330E1F710D7F00C8014D /* ADTabbarSherfSelected@3x.png */; };
-		188333171F710D7F00C8014D /* ADTabbarSearchSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1883330F1F710D7F00C8014D /* ADTabbarSearchSelected@2x.png */; };
-		188333181F710D7F00C8014D /* ADTabbarSherf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188333101F710D7F00C8014D /* ADTabbarSherf@2x.png */; };
-		188333191F710D7F00C8014D /* ADTabbarSearchSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188333111F710D7F00C8014D /* ADTabbarSearchSelected@3x.png */; };
-		1883331A1F710D7F00C8014D /* ADTabbarSherf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188333121F710D7F00C8014D /* ADTabbarSherf@3x.png */; };
 		1883331D1F71136900C8014D /* ADPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1883331C1F71136900C8014D /* ADPageMenu.m */; };
 		1883331F1F71137400C8014D /* ADPageMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1883331E1F71137400C8014D /* ADPageMenu.xib */; };
 		188333221F7117DE00C8014D /* ADMenuBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 188333211F7117DE00C8014D /* ADMenuBottom.m */; };
@@ -1109,6 +1101,11 @@
 		18B8E7A71F7B9E1700A522FD /* 方正书宋_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B8E79E1F7B82EF00A522FD /* 方正书宋_GBK.ttf */; };
 		18B8E7A81F7B9E1700A522FD /* 方正兰亭刊宋_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B8E79F1F7B82EF00A522FD /* 方正兰亭刊宋_GBK.ttf */; };
 		18B8E7A91F7B9E1700A522FD /* 方正兰亭黑 GB18030.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B8E7A01F7B82EF00A522FD /* 方正兰亭黑 GB18030.ttf */; };
+		18C16EA92005BBC200B83C86 /* ADTabbarSherf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C16EA72005BBC100B83C86 /* ADTabbarSherf@3x.png */; };
+		18C16EAA2005BBC200B83C86 /* ADTabbarSherf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C16EA82005BBC200B83C86 /* ADTabbarSherf@2x.png */; };
+		18C16EAD2005BCDD00B83C86 /* ADTabbarSearch@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C16EAB2005BCD900B83C86 /* ADTabbarSearch@3x.png */; };
+		18C16EAE2005BCDD00B83C86 /* ADTabbarSearch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C16EAC2005BCDC00B83C86 /* ADTabbarSearch@2x.png */; };
+		18C16EB12005C1B400B83C86 /* UIColor+additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C16EAF2005C1B400B83C86 /* UIColor+additions.m */; };
 		18C288B31F42A2690038F6F4 /* ADCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C288B21F42A2690038F6F4 /* ADCache.m */; };
 		18C288B71F42CFA30038F6F4 /* ADDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C288B61F42CFA30038F6F4 /* ADDisplayView.m */; };
 		18C288BB1F42D0570038F6F4 /* ADCacheManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C288BA1F42D0570038F6F4 /* ADCacheManger.m */; };
@@ -2282,14 +2279,6 @@
 		1880DD531FBC416300574C38 /* ADRankSectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADRankSectionTableViewCell.h; sourceTree = "<group>"; };
 		1880DD541FBC416300574C38 /* ADRankSectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADRankSectionTableViewCell.m; sourceTree = "<group>"; };
 		1880DD551FBC416300574C38 /* ADRankSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ADRankSectionTableViewCell.xib; sourceTree = "<group>"; };
-		1883330B1F710D7F00C8014D /* ADTabbarSherfSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSherfSelected@2x.png"; sourceTree = "<group>"; };
-		1883330C1F710D7F00C8014D /* ADTabbarSearch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSearch@2x.png"; sourceTree = "<group>"; };
-		1883330D1F710D7F00C8014D /* ADTabbarSearch@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSearch@3x.png"; sourceTree = "<group>"; };
-		1883330E1F710D7F00C8014D /* ADTabbarSherfSelected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSherfSelected@3x.png"; sourceTree = "<group>"; };
-		1883330F1F710D7F00C8014D /* ADTabbarSearchSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSearchSelected@2x.png"; sourceTree = "<group>"; };
-		188333101F710D7F00C8014D /* ADTabbarSherf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSherf@2x.png"; sourceTree = "<group>"; };
-		188333111F710D7F00C8014D /* ADTabbarSearchSelected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSearchSelected@3x.png"; sourceTree = "<group>"; };
-		188333121F710D7F00C8014D /* ADTabbarSherf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSherf@3x.png"; sourceTree = "<group>"; };
 		1883331B1F71136900C8014D /* ADPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPageMenu.h; sourceTree = "<group>"; };
 		1883331C1F71136900C8014D /* ADPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPageMenu.m; sourceTree = "<group>"; };
 		1883331E1F71137400C8014D /* ADPageMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADPageMenu.xib; sourceTree = "<group>"; };
@@ -2327,6 +2316,12 @@
 		18B8E7A11F7B83AD00A522FD /* ADFontTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADFontTableViewCell.h; sourceTree = "<group>"; };
 		18B8E7A21F7B83AD00A522FD /* ADFontTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADFontTableViewCell.m; sourceTree = "<group>"; };
 		18B8E7A31F7B83AD00A522FD /* ADFontTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ADFontTableViewCell.xib; sourceTree = "<group>"; };
+		18C16EA72005BBC100B83C86 /* ADTabbarSherf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSherf@3x.png"; sourceTree = "<group>"; };
+		18C16EA82005BBC200B83C86 /* ADTabbarSherf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSherf@2x.png"; sourceTree = "<group>"; };
+		18C16EAB2005BCD900B83C86 /* ADTabbarSearch@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSearch@3x.png"; sourceTree = "<group>"; };
+		18C16EAC2005BCDC00B83C86 /* ADTabbarSearch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADTabbarSearch@2x.png"; sourceTree = "<group>"; };
+		18C16EAF2005C1B400B83C86 /* UIColor+additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+additions.m"; sourceTree = "<group>"; };
+		18C16EB02005C1B400B83C86 /* UIColor+additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+additions.h"; sourceTree = "<group>"; };
 		18C288B11F42A2690038F6F4 /* ADCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCache.h; sourceTree = "<group>"; };
 		18C288B21F42A2690038F6F4 /* ADCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCache.m; sourceTree = "<group>"; };
 		18C288B51F42CFA30038F6F4 /* ADDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDisplayView.h; sourceTree = "<group>"; };
@@ -2479,14 +2474,10 @@
 			isa = PBXGroup;
 			children = (
 				18B8E79C1F7B82EF00A522FD /* ttf */,
-				1883330B1F710D7F00C8014D /* ADTabbarSherfSelected@2x.png */,
-				1883330C1F710D7F00C8014D /* ADTabbarSearch@2x.png */,
-				1883330D1F710D7F00C8014D /* ADTabbarSearch@3x.png */,
-				1883330E1F710D7F00C8014D /* ADTabbarSherfSelected@3x.png */,
-				1883330F1F710D7F00C8014D /* ADTabbarSearchSelected@2x.png */,
-				188333101F710D7F00C8014D /* ADTabbarSherf@2x.png */,
-				188333111F710D7F00C8014D /* ADTabbarSearchSelected@3x.png */,
-				188333121F710D7F00C8014D /* ADTabbarSherf@3x.png */,
+				18C16EA82005BBC200B83C86 /* ADTabbarSherf@2x.png */,
+				18C16EA72005BBC100B83C86 /* ADTabbarSherf@3x.png */,
+				18C16EAC2005BCDC00B83C86 /* ADTabbarSearch@2x.png */,
+				18C16EAB2005BCD900B83C86 /* ADTabbarSearch@3x.png */,
 				18303A9D1F43EACA005166CB /* a_charge_icon@2x.png */,
 				18303A9E1F43EACA005166CB /* a_charge_icon@3x.png */,
 				18303A9F1F43EACA005166CB /* a_charge_record@2x.png */,
@@ -3961,6 +3952,8 @@
 		18E6BE7F1F4C0901002AFE3C /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				18C16EB02005C1B400B83C86 /* UIColor+additions.h */,
+				18C16EAF2005C1B400B83C86 /* UIColor+additions.m */,
 				18E6BE801F4C091C002AFE3C /* NSObject+ADUnity.h */,
 				18E6BE811F4C091C002AFE3C /* NSObject+ADUnity.m */,
 				1883333B1F7257EB00C8014D /* UIView+AD.h */,
@@ -4243,7 +4236,6 @@
 				183040C21F43EAD3005166CB /* listxiazai@3x.png in Resources */,
 				1830424D1F43EAD4005166CB /* setting_orientation_shupin@3x.png in Resources */,
 				1880DD571FBC416300574C38 /* ADRankSectionTableViewCell.xib in Resources */,
-				188333181F710D7F00C8014D /* ADTabbarSherf@2x.png in Resources */,
 				1866C8151F74F1EA004768DD /* ADRecommendCell.xib in Resources */,
 				183041C41F43EAD4005166CB /* rd_reading_added_icon@3x.png in Resources */,
 				183041CB1F43EAD4005166CB /* readAloud_more@2x.png in Resources */,
@@ -4383,7 +4375,6 @@
 				18303F301F43EAD3005166CB /* bs_delete@2x.png in Resources */,
 				183041331F43EAD4005166CB /* nav_home_side_menu_selected@2x.png in Resources */,
 				18303F7C1F43EAD3005166CB /* change_mode_unchecked@3x.png in Resources */,
-				188333171F710D7F00C8014D /* ADTabbarSearchSelected@2x.png in Resources */,
 				18303F3B1F43EAD3005166CB /* bs_download_manage@3x.png in Resources */,
 				183040FE1F43EAD4005166CB /* mv_ad_shadow@2x.png in Resources */,
 				1822560D1F7E5CF20048A262 /* ADCategoryHeadView.xib in Resources */,
@@ -4409,6 +4400,7 @@
 				18303FDE1F43EAD3005166CB /* exp_more@3x.png in Resources */,
 				183042471F43EAD4005166CB /* setting_font_snaller_uneable@3x.png in Resources */,
 				183042281F43EAD4005166CB /* search_cannot_delete@2x.png in Resources */,
+				18C16EAD2005BCDD00B83C86 /* ADTabbarSearch@3x.png in Resources */,
 				183041AF1F43EAD4005166CB /* portrait@2x.png in Resources */,
 				1830411F1F43EAD4005166CB /* nav_add_book_selected@2x.png in Resources */,
 				18303FB31F43EAD3005166CB /* dingshi@3x.png in Resources */,
@@ -4425,7 +4417,6 @@
 				1830429C1F43EAD4005166CB /* tb_bookshelf_selected@3x.png in Resources */,
 				183041441F43EAD4005166CB /* new_nav_selected@3x.png in Resources */,
 				18303FED1F43EAD3005166CB /* f_distillate@2x.png in Resources */,
-				188333141F710D7F00C8014D /* ADTabbarSearch@2x.png in Resources */,
 				18303F3F1F43EAD3005166CB /* bs_downloading@3x.png in Resources */,
 				183040991F43EAD3005166CB /* hsm_icon_1@2x.png in Resources */,
 				18303F681F43EAD3005166CB /* bs_stick_selected@2x.png in Resources */,
@@ -4449,14 +4440,13 @@
 				183042291F43EAD4005166CB /* search_cannot_delete@3x.png in Resources */,
 				18303FF31F43EAD3005166CB /* f_girl_icon@2x.png in Resources */,
 				183042D11F43EAD4005166CB /* zuire@2x.png in Resources */,
-				1883331A1F710D7F00C8014D /* ADTabbarSherf@3x.png in Resources */,
+				18C16EAA2005BBC200B83C86 /* ADTabbarSherf@2x.png in Resources */,
 				18303F1F1F43EAD3005166CB /* bofangNotify2@2x.png in Resources */,
 				183041151F43EAD4005166CB /* n_icon@2x.png in Resources */,
 				18303FBA1F43EAD3005166CB /* directory_not_previewed@2x.png in Resources */,
 				183040451F43EAD3005166CB /* forum_comment_confirm@3x.png in Resources */,
 				183041DF1F43EAD4005166CB /* reading_tip_next@2x.png in Resources */,
 				183041901F43EAD4005166CB /* p_synchronize_title_ipad@2x.png in Resources */,
-				188333191F710D7F00C8014D /* ADTabbarSearchSelected@3x.png in Resources */,
 				183042C51F43EAD4005166CB /* yellow_mode_bg@2x.png in Resources */,
 				1830426C1F43EAD4005166CB /* sign_signed@3x.png in Resources */,
 				183041491F43EAD4005166CB /* new_notification_tip@2x.png in Resources */,
@@ -4578,6 +4568,7 @@
 				183040171F43EAD3005166CB /* fb_cancel_selected@2x.png in Resources */,
 				18303FA51F43EAD3005166CB /* day_mode_bg@2x.png in Resources */,
 				18303FB51F43EAD3005166CB /* directory@3x.png in Resources */,
+				18C16EA92005BBC200B83C86 /* ADTabbarSherf@3x.png in Resources */,
 				183042371F43EAD4005166CB /* setting_font_bigger_nomal_h@3x.png in Resources */,
 				18303FB01F43EAD3005166CB /* delete_book_tip@2x.png in Resources */,
 				183040C81F43EAD3005166CB /* m_success_icon@2x.png in Resources */,
@@ -4627,7 +4618,6 @@
 				1830404E1F43EAD3005166CB /* forum_comment_reply_selected@3x.png in Resources */,
 				18303FAF1F43EAD3005166CB /* default_book_cover@3x.png in Resources */,
 				18303FBE1F43EAD3005166CB /* directory_vip_chapter@2x.png in Resources */,
-				188333161F710D7F00C8014D /* ADTabbarSherfSelected@3x.png in Resources */,
 				18303FA71F43EAD3005166CB /* Default-1242x2208@3x.png in Resources */,
 				183040BD1F43EAD3005166CB /* listpaixu@2x.png in Resources */,
 				183040AB1F43EAD3005166CB /* jingdian@2x.png in Resources */,
@@ -4700,7 +4690,6 @@
 				183040931F43EAD3005166CB /* guanbiNotify2@2x.png in Resources */,
 				18303FB21F43EAD3005166CB /* dingshi@2x.png in Resources */,
 				183042061F43EAD4005166CB /* rp_no_network@2x.png in Resources */,
-				188333151F710D7F00C8014D /* ADTabbarSearch@3x.png in Resources */,
 				183042081F43EAD4005166CB /* rp_normal_bg@2x.png in Resources */,
 				189C56741F7D08E1005FB4CC /* ADCategoryCell.xib in Resources */,
 				183042611F43EAD4005166CB /* shang@3x.png in Resources */,
@@ -4757,6 +4746,7 @@
 				18303F151F43EAD3005166CB /* bd_star_empty@3x.png in Resources */,
 				183042601F43EAD4005166CB /* shang@2x.png in Resources */,
 				183041481F43EAD4005166CB /* new_notification_icon@2x.png in Resources */,
+				18C16EAE2005BCDD00B83C86 /* ADTabbarSearch@2x.png in Resources */,
 				183040791F43EAD3005166CB /* forum_vote_add_selected@3x.png in Resources */,
 				18303F461F43EAD3005166CB /* bs_feed_tip@2x.png in Resources */,
 				18303FA61F43EAD3005166CB /* day_mode_bg@3x.png in Resources */,
@@ -5024,7 +5014,6 @@
 				183040011F43EAD3005166CB /* f_moderator_icon@2x.png in Resources */,
 				18303F351F43EAD3005166CB /* bs_download@3x.png in Resources */,
 				183041011F43EAD4005166CB /* mv_avatar_wrapper@2x.png in Resources */,
-				188333131F710D7F00C8014D /* ADTabbarSherfSelected@2x.png in Resources */,
 				183042421F43EAD4005166CB /* setting_font_snaller_normal@2x.png in Resources */,
 				18303F8B1F43EAD3005166CB /* d_delete@2x.png in Resources */,
 				183040331F43EAD3005166CB /* font_increase@2x.png in Resources */,
@@ -5247,6 +5236,7 @@
 				182F692A1F3AAE0B00DB5BEE /* ADSeachTagCell.m in Sources */,
 				1880DD4D1FBC1EBC00574C38 /* ADRankTableViewHeadView.m in Sources */,
 				1883331D1F71136900C8014D /* ADPageMenu.m in Sources */,
+				18C16EB12005C1B400B83C86 /* UIColor+additions.m in Sources */,
 				18D108D71F384B0900890982 /* ADPageViewController.m in Sources */,
 				1880DD441FBC185D00574C38 /* ADRanking.m in Sources */,
 				18D108E71F384ED600890982 /* ADReaderSetting.m in Sources */,
